@@ -253,13 +253,6 @@ nb_NO:
       save: "Lagre"
       no_timezone: 'Du har ikke ennå satt tidssone. Du vil ikke kunne sette påminnelser. Sett tidssone <a href="%{basePath}/my/preferences/profile">i profilen din</a>.'
       search: "Søk"
-      reminders:
-        later_today: "Senere i dag"
-        tomorrow: "I morgen"
-        next_week: "Neste uke"
-        later_this_week: "Senere denne uken"
-        next_month: "Neste måned"
-        custom: "Egendefinert dato og tid"
     drafts:
       resume: "Fortsett"
       remove: "Fjern"
@@ -382,6 +375,8 @@ nb_NO:
       statuses:
         pending:
           title: "På vent"
+        approved:
+          title: "Godkjent"
         rejected:
           title: "Avvist"
       types:
@@ -455,6 +450,8 @@ nb_NO:
           credentials:
             username: "Brukernavn"
             password: "Passord"
+          mailboxes:
+            disabled: "deaktivert"
         membership:
           title: Medlemskap
           access: Tilgang
@@ -598,6 +595,7 @@ nb_NO:
       topic_sentence:
         one: "%{count} emne"
         other: "%{count} emner"
+      n_more: "Kategorier (ytterligere%{count})..."
     ip_lookup:
       title: Slå opp IP-adresse
       hostname: Vertsnavn
@@ -677,6 +675,7 @@ nb_NO:
       suspended_notice: "Denne brukeren er utestengt til %{date}."
       suspended_permanently: "Denne brukeren er utestengt."
       suspended_reason: "Begrunnelse:"
+      github_profile: "GitHub"
       email_activity_summary: "Oppsummering av aktivitet"
       mailing_list_mode:
         label: "E-postlistemodus"
@@ -935,6 +934,7 @@ nb_NO:
         time_read: "Lesetid"
         days_visited: "Dager besøkt"
         account_age_days: "Kontoalder i dager"
+        create: "Inviter"
         valid_for: "Invitasjonslenke er kun gyldig for denne e-postadressen: %{email}"
         invite_link:
           success: "Invitasjonslenke har blitt generert!"
@@ -1062,7 +1062,6 @@ nb_NO:
       sign_up: "Registrer deg"
       hide_session: "Spør meg igjen i morgen"
       hide_forever: "nei takk"
-      hidden_for_session: "OK, jeg spør igjen i morgen. Du kan også registrere en konto når du vil!"
     summary:
       enabled_description: "Du ser for øyeblikket en oppsummering av dette emnet: de mest interessante innleggene ifølge brukerne."
       enable: "Oppsummer dette emnet"
@@ -1160,6 +1159,7 @@ nb_NO:
       accept_invite: "Godta invitasjon"
       success: "Kontoen din har blitt opprettet og du er nå logget inn."
       name_label: "Navn"
+      password_label: "Passord"
       optional_description: "(valgfritt)"
     password_reset:
       continue: "Fortsett til %{site_name}"
@@ -1334,6 +1334,10 @@ nb_NO:
       posted: "<span>%{username}</span> %{description}"
       edited: "<span>%{username}</span> %{description}"
       liked: "<span>%{username}</span> %{description}"
+      liked_2: "<span class='double-user'>%{username}, %{username2}</span> %{description}"
+      liked_many:
+        one: "<span class='multi-user'>%{username}, %{username2} og én annen</span> %{description}"
+        other: "<span class='multi-user'>%{username}, %{username2} og %{count} andre</span> %{description}"
       liked_consolidated: "<span>%{username}</span> %{description}"
       private_message: "<span>%{username}</span> %{description}"
       invited_to_private_message: "<p><span>%{username}</span> %{description}"
@@ -1366,10 +1370,7 @@ nb_NO:
       from_my_computer: "Fra min enhet"
       from_the_web: "Fra nettet"
       remote_tip: "lenke til bilde"
-      remote_tip_with_attachments: "lenke til bilde eller fil %{authorized_extensions}"
       local_tip: "velg bilder fra din enhet"
-      local_tip_with_attachments: "velg bilde eller fil fra din enhet %{authorized_extensions}"
-      hint: "(du kan også dra og slippe inn i tekstbehandleren for å laste dem opp)"
       hint_for_supported_browsers: "du kan også dra og slippe eller lime inn bilder i tekstbehandleren"
       uploading: "Laster opp bilde"
       select_file: "Velg fil"
@@ -1440,6 +1441,8 @@ nb_NO:
           noreplies: har ingen svar
           single_user: inneholder bare én bruker
         post:
+          count:
+            label: Innlegg
           time:
             label: Skrevet
             before: før
@@ -2143,7 +2146,6 @@ nb_NO:
       one: "bruker"
       other: "brukere"
     category_title: "Kategori"
-    history: "Historie"
     changed_by: "av %{author}"
     raw_email:
       title: "Innkommende e-post"
@@ -3054,7 +3056,6 @@ nb_NO:
           require_approval: "Innlegg som inneholder disse ordene, vil måtte godkjennes av staben før de kan bli sett."
           flag: "Tillat innlegg som inneholder disse ordene, men flagg dem som upassende slik at moderatorer kan se over dem."
         form:
-          placeholder: "helt ord eller * som jokertegn"
           placeholder_regexp: "regulært uttrykk"
           add: "Legg til"
           success: "Suksess"

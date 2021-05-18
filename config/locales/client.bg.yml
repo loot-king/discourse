@@ -267,15 +267,6 @@ bg:
       list_permission_denied: "Нямате право да преглеждате отметките на този потребител."
       search: "Търсене"
       reminders:
-        later_today: "По-късно днес"
-        next_business_day: "Следващия работен ден"
-        tomorrow: "Утре"
-        next_week: "Следваща седмица"
-        later_this_week: "По-късно тази седмица"
-        start_of_next_business_week_alt: "Следващия понеделник"
-        next_month: "Следващия месец"
-        custom: "Друга дата и час"
-        none: "Без напомняне"
         today_with_time: "днес в %{time}"
         tomorrow_with_time: "утре в %{time}"
         at_time: "на %{date_time}"
@@ -618,6 +609,7 @@ bg:
       topic_stat_sentence_month:
         one: "%{count}нова тема през последния месец."
         other: "%{count}през последния месец."
+      n_more: "Категории (още %{count})..."
     ip_lookup:
       title: Търсене по IP адрес
       hostname: Хост
@@ -704,6 +696,7 @@ bg:
       admin_tooltip: "Този потребител е админ"
       suspended_notice: "Този потребител е отстранен до %{date}."
       suspended_reason: "Причина:"
+      github_profile: "GitHub"
       email_activity_summary: "Сумарна активност"
       mailing_list_mode:
         label: "Режим Бюлетин"
@@ -743,6 +736,7 @@ bg:
       revoke_access: "Прекратяване на достъпа"
       undo_revoke_access: "Отмяна прекратяване на достъпа"
       api_approved: "Одобрени:"
+      staged: "Поставен"
       staff_counters:
         flags_given: "полезни сигнали"
         flagged_posts: "публикации със сигнали"
@@ -935,6 +929,7 @@ bg:
         time_read: "Време за прочитане"
         days_visited: "Дни Посетена"
         account_age_days: "Период на акаунта в дни"
+        create: "Покана"
       password:
         title: "Парола"
         too_short: "Вашата парола е твърде кратка."
@@ -953,6 +948,12 @@ bg:
         post_count:
           one: "Създадена публикация"
           other: "Създадени публикации "
+        likes_given:
+          one: "дадени"
+          other: "дадени"
+        likes_received:
+          one: "получени"
+          other: "получени"
         days_visited:
           one: "Посетен ден"
           other: "Посетени дни"
@@ -1047,7 +1048,6 @@ bg:
       sign_up: "Регистрирай се"
       hide_session: "Напомни ми утре"
       hide_forever: "не благодаря"
-      hidden_for_session: "Добре, Ще ви питам отново утре. През това време можете да използвате бутона \"Влизане\" или да си създадете нов потребител."
       intro: "Здравейте! Изглежда, че следите дискусията, но все още не сте създали собствен профил."
       value_prop: "Когато създадете профил, ще отбелязваме това, което сте чели, така че да можете да продължите от там, откъдето сте спрели. Можете също така да получавате известия тук и по електронната поща, когато има нови мнения. Също така ще може да маркирате любимите си публикации."
     summary:
@@ -1061,6 +1061,7 @@ bg:
       disable: "Покажи изтритите публикации"
     private_message_info:
       title: "Съобщение"
+      invite: "Поканете други..."
       leave_message: "Сигурни ли сте, че искате да оставите това съобщение?"
       remove_allowed_user: "Сигурни ли сте, че искате да премахнете %{name} от това съобщение?"
       remove_allowed_group: "Сигурни ли сте, че искате да премахнете %{name} от това съобщение?"
@@ -1140,6 +1141,7 @@ bg:
       accept_invite: "Приеми поканата."
       success: "Профилът ви е създаден и вече сте влезли в него."
       name_label: "Име"
+      password_label: "Парола"
     password_reset:
       continue: "Продължете към %{site_name}"
     emoji_set:
@@ -1247,10 +1249,7 @@ bg:
       from_my_computer: "От моето устройство"
       from_the_web: "От мрежата"
       remote_tip: "линк към изображение"
-      remote_tip_with_attachments: "връзка към картинка или файл %{authorized_extensions}"
       local_tip: "изберете изображения от вашето устройство"
-      local_tip_with_attachments: "изберете картинки или файлове от вашето устройство %{authorized_extensions}"
-      hint: "(за да ги качите също можете да ги провлачите и пуснете в редактора)"
       hint_for_supported_browsers: "вие можете винаги да привлачите или поставите картинки върху вашия редактора"
       uploading: "Качване "
       select_file: "Избери файл"
@@ -1902,7 +1901,6 @@ bg:
       one: "потребител"
       other: "потребители"
     category_title: "Категория"
-    history: "История"
     changed_by: "от %{author}"
     raw_email:
       title: "Входяща поща"

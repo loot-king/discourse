@@ -45,17 +45,34 @@ import userSearch from "discourse/lib/user-search";
 
 const REBUILD_SCROLL_MAP_EVENTS = ["composer:resized", "composer:typed-reply"];
 
-const uploadHandlers = [];
+let uploadHandlers = [];
 export function addComposerUploadHandler(extensions, method) {
   uploadHandlers.push({
     extensions,
     method,
   });
 }
+export function cleanUpComposerUploadHandler() {
+  uploadHandlers = [];
+}
 
-const uploadMarkdownResolvers = [];
+let uploadProcessorQueue = [];
+let uploadProcessorActions = {};
+export function addComposerUploadProcessor(queueItem, actionItem) {
+  uploadProcessorQueue.push(queueItem);
+  Object.assign(uploadProcessorActions, actionItem);
+}
+export function cleanUpComposerUploadProcessor() {
+  uploadProcessorQueue = [];
+  uploadProcessorActions = {};
+}
+
+let uploadMarkdownResolvers = [];
 export function addComposerUploadMarkdownResolver(resolver) {
   uploadMarkdownResolvers.push(resolver);
+}
+export function cleanUpComposerUploadMarkdownResolver() {
+  uploadMarkdownResolvers = [];
 }
 
 export default Component.extend({
@@ -73,7 +90,13 @@ export default Component.extend({
     const filename = uploadFilenamePlaceholder
       ? uploadFilenamePlaceholder
       : clipboard;
-    return `[${I18n.t("uploading_filename", { filename })}]() `;
+
+    let placeholder = `[${I18n.t("uploading_filename", { filename })}]()\n`;
+    if (!this._cursorIsOnEmptyLine()) {
+      placeholder = `\n${placeholder}`;
+    }
+
+    return placeholder;
   },
 
   @discourseComputed("composer.requiredCategoryMissing")
@@ -540,6 +563,10 @@ export default Component.extend({
     schedule("afterRender", () => {
       let found = this.warnedGroupMentions || [];
       $preview.find(".mention-group.notify").each((idx, e) => {
+        if (this._isInQuote(e)) {
+          return;
+        }
+
         const $e = $(e);
         let name = $e.data("name");
         if (found.indexOf(name) === -1) {
@@ -624,11 +651,33 @@ export default Component.extend({
 
     const $element = $(this.element);
 
+    $.blueimp.fileupload.prototype.processActions = uploadProcessorActions;
+
     $element.fileupload({
       url: getURL(`/uploads.json?client_id=${this.messageBus.clientId}`),
       dataType: "json",
       pasteZone: $element,
+      processQueue: uploadProcessorQueue,
     });
+
+    $element
+      .on("fileuploadprocess", (e, data) => {
+        this.appEvents.trigger(
+          "composer:insert-text",
+          `[${I18n.t("processing_filename", {
+            filename: data.files[data.index].name,
+          })}]()\n`
+        );
+      })
+      .on("fileuploadprocessalways", (e, data) => {
+        this.appEvents.trigger(
+          "composer:replace-text",
+          `[${I18n.t("processing_filename", {
+            filename: data.files[data.index].name,
+          })}]()\n`,
+          ""
+        );
+      });
 
     $element.on("fileuploadpaste", (e) => {
       this._pasted = true;
@@ -858,6 +907,42 @@ export default Component.extend({
 
   showPreview() {
     this.send("togglePreview");
+  },
+
+  _isInQuote(element) {
+    let parent = element.parentElement;
+    while (parent && !this._isPreviewRoot(parent)) {
+      if (this._isQuote(parent)) {
+        return true;
+      }
+
+      parent = parent.parentElement;
+    }
+
+    return false;
+  },
+
+  _isPreviewRoot(element) {
+    return (
+      element.tagName === "DIV" &&
+      element.classList.contains("d-editor-preview")
+    );
+  },
+
+  _isQuote(element) {
+    return element.tagName === "ASIDE" && element.classList.contains("quote");
+  },
+
+  _cursorIsOnEmptyLine() {
+    const textArea = this.element.querySelector(".d-editor-input");
+    const selectionStart = textArea.selectionStart;
+    if (selectionStart === 0) {
+      return true;
+    } else if (textArea.value.charAt(selectionStart - 1) === "\n") {
+      return true;
+    } else {
+      return false;
+    }
   },
 
   actions: {

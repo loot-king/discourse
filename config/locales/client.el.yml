@@ -281,17 +281,6 @@ el:
       search_placeholder: "Αναζήτηση σελιδοδεικτών με βάση το όνομα, τον τίτλο θέματος ή το περιεχόμενο δημοσίευσης"
       search: "Αναζήτηση"
       reminders:
-        later_today: "Αργότερα σήμερα"
-        next_business_day: "Επόμενη εργάσιμη ημέρα"
-        tomorrow: "Αύριο"
-        next_week: "Την άλλη εβδομάδα"
-        later_this_week: "Αργότερα αυτήν την εβδομάδα"
-        start_of_next_business_week: "Τη Δευτέρα"
-        start_of_next_business_week_alt: "Την επόμενη Δευτέρα"
-        next_month: "Τον άλλο μήνα"
-        custom: "Προσαρμοσμένη ημερομηνία και ώρα"
-        last_custom: "Τελευταία"
-        none: "Δεν απαιτείται υπενθύμιση"
         today_with_time: "σήμερα στις %{time}"
         tomorrow_with_time: "αύριο στις %{time}"
         at_time: "στις %{date_time}"
@@ -304,6 +293,8 @@ el:
       new_topic: "Νέο προσχέδιο θέματος"
       new_private_message: "Νέο προσχέδιο ιδιωτικού μηνύματος"
       topic_reply: "Προσχέδιο απάντησης"
+      abandon:
+        yes_value: "Απόρριψη"
     topic_count_latest:
       one: "Δείτε %{count} νέο ή ενημερωμένο θέμα"
       other: "Δείτε %{count} νέα ή ενημερωμένα θέματα"
@@ -452,7 +443,7 @@ el:
           created_at_asc: "Δημιουργήθηκε στις (αντίστροφα)"
         priority:
           title: "Ελάχιστη προτεραιότητα"
-          low: "(οποιοδήποτε)"
+          low: "Χαμηλή"
           medium: "Μεσαία"
           high: "Υψηλή"
       conversation:
@@ -887,6 +878,7 @@ el:
       suspended_notice: "Αυτός ο χρήστης είναι σε αποβολή μέχρι τις %{date}."
       suspended_permanently: "Ο χρήστης είναι αποβλημένος."
       suspended_reason: "Αιτιολογία:"
+      github_profile: "GitHub"
       email_activity_summary: "Περίληψη Ενεργειών"
       mailing_list_mode:
         label: "Λειτουργία ταχυδρομικής λίστας"
@@ -1237,6 +1229,7 @@ el:
         time_read: "Χρόνος Ανάγνωσης"
         days_visited: "Μέρες Επίσκεψης"
         account_age_days: "Ηλικία λογαριασμού σε ημέρες"
+        create: "Πρόσκληση"
         valid_for: "Ο σύνδεσμος πρόσκλησης είναι έγκυρος μόνο για αυτή τη διεύθυνση email: %{email}"
         invite_link:
           title: "Σύνδεσμος πρόσκλησης"
@@ -1372,7 +1365,6 @@ el:
       sign_up: "Εγγραφή"
       hide_session: "Υπενθύμιση αύριο"
       hide_forever: "όχι ευχαριστώ"
-      hidden_for_session: "Εντάξει, θα σε ρωτήσω αύριο. Μπορείς πάντα να χρησιμοποιείς τη \"Σύνδεση\" για να δημιουργήσεις ένα λογαριασμό."
       intro: "Γεια! Φαίνεται ότι απολαμβάνεις τη συζήτηση, αλλά δεν έχεις εγγραφεί ακόμα για λογαριασμό."
       value_prop: "Όταν δημιουργείτε έναν λογαριασμό, θυμόμαστε ακριβώς τι έχετε διαβάσει, έτσι ώστε να επιστρέφετε πάντα από εκεί που σταματήσατε. Μπορείτε επίσης να λαμβάνετε ειδοποιήσεις, εδώ και μέσω ηλεκτρονικού ταχυδρομείου, κάθε φορά που κάποιος σας απαντά. Και μπορείτε να σας αρέσουν οι δημοσιεύσεις και να μοιραστείς την αγάπη. :heartpulse:"
     summary:
@@ -1386,6 +1378,8 @@ el:
       disable: "Εμφάνισε τις σβησμένες αναρτήσεις"
     private_message_info:
       title: "Μήνυμα"
+      invite: "Προσκαλέστε άλλους..."
+      edit: "Προσθέστε ή αφαιρέστε..."
       leave_message: "Σίγουρα θελετε να αφήσετε αυτό το μήνυμα;"
       remove_allowed_user: "Θέλεις σίγουρα να αφαιρέσεις τον/την %{name} από αυτή τη συζήτηση;"
       remove_allowed_group: "Θέλεις σίγουρα να αφαιρέσεις τον/την %{name} από αυτό το μήνυμα;"
@@ -1498,6 +1492,7 @@ el:
       accept_invite: "Αποδοχή Πρόσκλησης"
       success: "Ο λογαριασμός σας έχει δημιουργηθεί και έχετε συνδεθεί. "
       name_label: "Όνομα"
+      password_label: "Κωδικός Πρόσβασης"
       optional_description: "(προεραιτικό)"
     password_reset:
       continue: "Συνεχίστε στην %{site_name}"
@@ -1725,6 +1720,10 @@ el:
       posted: "<span>%{username}</span> %{description}"
       edited: "<span>%{username}</span> %{description}"
       liked: "<span>%{username}</span> %{description}"
+      liked_2: "<span class='double-user'>%{username}, %{username2}</span> %{description}"
+      liked_many:
+        one: "<span class='multi-user'>%{username}, %{username2} και %{count} ακόμα</span> %{description}"
+        other: "<span class='multi-user'>%{username}, %{username2} και %{count} ακόμα</span> %{description}"
       liked_consolidated_description:
         one: "μου άρεσε %{count} από τις αναρτήσεις σας"
         other: "μου άρεσαν %{count} από τις αναρτήσεις σας"
@@ -1788,10 +1787,7 @@ el:
       from_my_computer: "Από τη συσκευή μου"
       from_the_web: "Από το διαδίκτυο"
       remote_tip: "υπερσύνδεσμος προς μια εικόνα"
-      remote_tip_with_attachments: "σύνδεσμος σε εικόνα ή αρχείο %{authorized_extensions}"
       local_tip: "επιλογή εικόνων από τη συσκευή σου"
-      local_tip_with_attachments: "επίλεξε εικόνες ή αρχεία από τη συσκευή σου %{authorized_extensions}"
-      hint: "(μπορείς επίσης να τα σύρεις με το ποντίκι στον editor για να τα ανεβάσεις)"
       hint_for_supported_browsers: "μπορείς επίσης να σύρεις ή να επικόλλησεις εικόνες στον editor"
       uploading: "Ανεβαίνει"
       select_file: "Επιλογή Αρχείου"
@@ -2705,7 +2701,6 @@ el:
       one: "χρήστης"
       other: "χρήστες"
     category_title: "Κατηγορία"
-    history: "Ιστορικό"
     changed_by: "του/της %{author}"
     raw_email:
       title: "Εισερχόμενα email"
@@ -3913,7 +3908,6 @@ el:
           require_approval: "Οι αναρτήσεις που περιέχουν αυτές τις λέξεις, χρειάζονται έγκριση από το προσωπικό πριν αναρτηθούν."
           flag: "Επίτρεψε τις αναρτήσεις που περιέχουν αυτές τις λέξεις, αλλά επισήμανέ τες ως ανάρμοστες για έλεγχο από συντονιστή."
         form:
-          placeholder: "ολόκληρη λέξη ή * ως μπαλαντέρ"
           placeholder_regexp: "regular expression"
           add: "Προσθήκη"
           success: "Επιτυχία"

@@ -272,17 +272,6 @@ ca:
       search_placeholder: "Cerqueu preferits per nom, títol del tema o contingut de la publicació"
       search: "Cerca"
       reminders:
-        later_today: "Més tard avui"
-        next_business_day: "El pròxim dia feiner"
-        tomorrow: "Demà"
-        next_week: "La setmana que ve"
-        later_this_week: "Més avant aquesta setmana"
-        start_of_next_business_week: "Dilluns"
-        start_of_next_business_week_alt: "Dilluns vinent"
-        next_month: "El mes que ve"
-        custom: "Data i hora personalitzades"
-        last_custom: "Darrer"
-        none: "No cal cap recordatori"
         today_with_time: "avui a les %{time}"
         tomorrow_with_time: "demà a les %{time}"
         at_time: "%{date_time}"
@@ -295,6 +284,8 @@ ca:
       new_topic: "Esborrany de tema nou"
       new_private_message: "Esborrany de nou missatge privat"
       topic_reply: "Esborrany de resposta"
+      abandon:
+        yes_value: "Descarta"
     topic_count_latest:
       one: "Vegeu %{count} tema nou o actualitzat"
       other: "Vegeu %{count} temes nous o actualitzats"
@@ -443,7 +434,7 @@ ca:
           created_at_asc: "Creat (invers)"
         priority:
           title: "Prioritat mínima"
-          low: "(qualsevol)"
+          low: "Baixa"
           medium: "Mitjana"
           high: "Alta"
       conversation:
@@ -572,6 +563,8 @@ ca:
             imap_ssl: "Utilitza SSL per a SMTP"
             username: "Nom d'usuari"
             password: "Contrasenya"
+          mailboxes:
+            disabled: "desactivat"
         membership:
           title: Membres
           access: Accés
@@ -725,6 +718,7 @@ ca:
       topic_stat_sentence_month:
         one: "%{count} tema nou el mes passat."
         other: "%{count} temes nous el mes passat. "
+      n_more: "Categories (%{count} més)..."
     ip_lookup:
       title: Explora adreça IP
       hostname: Nom d'amfitrió
@@ -830,6 +824,7 @@ ca:
       suspended_notice: "Aquest usuari és suspès fins a %{date}."
       suspended_permanently: "Aquest usuari és suspès."
       suspended_reason: "Motiu:"
+      github_profile: "GitHub"
       email_activity_summary: "Resum d'activitat"
       mailing_list_mode:
         label: "Mode de llista de correu"
@@ -991,6 +986,8 @@ ca:
       change_card_background:
         title: "Fons de la targeta d'usuari"
         instructions: "Les imatges de fons se centraran i tindran una amplada per defecte de 590px."
+      change_featured_topic:
+        title: "Tema destacat"
       email:
         title: "Correu electrònic"
         primary: "Adreça de correu primària"
@@ -1150,6 +1147,7 @@ ca:
         time_read: "Temps de lectura"
         days_visited: "Dies visitats"
         account_age_days: "Antiguitat del compte en dies"
+        create: "Convida"
         valid_for: "L'enllaç d'invitació només és vàlid per a aquesta adreça de correu: %{email}"
         invite_link:
           success: "Enllaç d'invitació generat emb èxit!"
@@ -1282,7 +1280,6 @@ ca:
       sign_up: "Registre"
       hide_session: "Recorda-m'ho demà"
       hide_forever: "no, gràcies"
-      hidden_for_session: "D'acord, us ho demanarem demà. Sempre podeu fer servir també <i>Inicia la sessió</i> per a crear un compte."
       intro: "Bon dia! Sembla que gaudiu de la discussió, però no heu registrat un compte."
       value_prop: "Quan creeu un compte, recordem exactament el que heu llegit, de manera que sempre torneu allà on ho vau deixar. També rebreu notificacions, ací i via correu, quan algú us respon. I podeu dir que us agraden les publicacions per a compartir l'amor. :heartpulse:"
     summary:
@@ -1403,6 +1400,7 @@ ca:
       accept_invite: "Accepta la invitació"
       success: "S'ha creat el compte i ara heu iniciat la sessió."
       name_label: "Nom"
+      password_label: "Contrasenya"
       optional_description: "(opcional)"
     password_reset:
       continue: "Continua a %{site_name}"
@@ -1602,6 +1600,10 @@ ca:
       posted: "<span>%{username}</span> %{description}"
       edited: "<span>%{username}</span> %{description}"
       liked: "<span>%{username}</span> %{description}"
+      liked_2: "<span class='double-user'>%{username}, %{username2}</span> %{description}"
+      liked_many:
+        one: "<span class='multi-user'>%{username}, %{username2} i %{count} altre</span> %{description}"
+        other: "<span class='multi-user'>%{username}, %{username2} i %{count} altres</span> %{description}"
       liked_consolidated_description:
         one: "li agrada %{count} de les vostres publicacions"
         other: " %{count} de les vostres publicacions té 'M'agrada'"
@@ -1657,10 +1659,7 @@ ca:
       from_my_computer: "Des del meu dispositiu"
       from_the_web: "Des de la web"
       remote_tip: "enllaç a imatge"
-      remote_tip_with_attachments: "enllaç a imatge o fixer %{authorized_extensions} "
       local_tip: "seleccioneu imatges des del vostre dispositiu"
-      local_tip_with_attachments: "trieu imatges o fitxers des del vostre dispositiu %{authorized_extensions}"
-      hint: "(per a carregar-los, també podeu arrossegar-los i deixar-los anar en l'editor)"
       hint_for_supported_browsers: "també podeu arrossegar i deixar anar o enganxar imatges en l'editor"
       uploading: "Carregant"
       select_file: "Tria un fitxer"
@@ -2507,7 +2506,6 @@ ca:
       one: "usuari"
       other: "usuaris"
     category_title: "Categoria"
-    history: "Historial"
     changed_by: "per %{author}"
     raw_email:
       title: "Correu entrant"
@@ -3597,7 +3595,6 @@ ca:
           require_approval: "Les publicacions que continguin aquestes paraules requeriran aprovació per l'equip responsable abans que puguin ser vistes. "
           flag: "Permet publicacions que contenen aquestes paraules, però senyala-les amb bandera com a inapropiades de manera que els moderadors puguin revisar-les"
         form:
-          placeholder: "paraula completa o * com a comodí"
           placeholder_regexp: "expressió regular"
           add: "Afegeix"
           success: "Èxit"

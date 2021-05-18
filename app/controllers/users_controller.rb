@@ -285,11 +285,10 @@ class UsersController < ApplicationController
     guardian.ensure_can_edit!(user)
 
     ActiveRecord::Base.transaction do
-      if email = user.user_emails.find_by(email: params[:email], primary: false)
-        email.destroy
-        DiscourseEvent.trigger(:user_updated, user)
-      elsif change_requests = user.email_change_requests.where(new_email: params[:email]).presence
+      if change_requests = user.email_change_requests.where(new_email: params[:email]).presence
         change_requests.destroy_all
+      elsif user.user_emails.where(email: params[:email], primary: false).destroy_all.present?
+        DiscourseEvent.trigger(:user_updated, user)
       else
         return render json: failed_json, status: 428
       end
@@ -1129,11 +1128,9 @@ class UsersController < ApplicationController
 
     if type.blank? || type == 'system'
       upload_id = nil
+    elsif !SiteSetting.allow_uploaded_avatars
+      return render json: failed_json, status: 422
     else
-      if !SiteSetting.allow_uploaded_avatars
-        return render json: failed_json, status: 422
-      end
-
       upload_id = params[:upload_id]
       upload = Upload.find_by(id: upload_id)
 
@@ -1151,6 +1148,10 @@ class UsersController < ApplicationController
       else
         user.user_avatar.custom_upload_id = upload_id
       end
+    end
+
+    if user.is_system_user?
+      SiteSetting.use_site_small_logo_as_system_avatar = false
     end
 
     user.uploaded_avatar_id = upload_id
@@ -1187,6 +1188,11 @@ class UsersController < ApplicationController
     end
 
     user.uploaded_avatar_id = upload.id
+
+    if user.is_system_user?
+      SiteSetting.use_site_small_logo_as_system_avatar = false
+    end
+
     user.save!
 
     avatar = user.user_avatar || user.create_user_avatar

@@ -241,6 +241,7 @@ en:
     not_found_template_link: |
       <p>The invitation to <a href="%{base_url}">%{site_name}</a> can no longer be redeemed. Please ask the person who invited you to send you a new invitation.</p>
     user_exists: "There's no need to invite <b>%{email}</b>, they <a href='%{base_path}/u/%{username}/summary'>already have an account!</a>"
+    invite_exists: "You already invited <b>%{email}</b>."
     invalid_email: "%{email} isn't a valid email address."
     confirm_email: "<p>You’re almost done! We sent an activation mail to your email address. Please follow the instructions in the mail to activate your account.</p><p>If it doesn’t arrive, check your spam folder.</p>"
     cant_invite_to_group: "You are not allowed to invite users to specified group(s). Make sure you are owner of the group(s) you are trying to invite to."
@@ -264,6 +265,7 @@ en:
     muted_topic: "Sorry, that user muted this topic."
     receiver_does_not_allow_pm: "Sorry, that user does not allow you to send them private messages."
     sender_does_not_allow_pm: "Sorry, you do not allow that user to send you private messages."
+    user_cannot_see_topic: "%{username} cannot see the topic."
 
   backup:
     operation_already_running: "An operation is currently running. Can't start a new job right now."
@@ -984,6 +986,16 @@ en:
     no_drafts:
       self: "You have no drafts; begin composing a reply in any topic and it will be auto-saved as a new draft."
 
+  email_settings:
+    pop3_authentication_error: "There was an issue with the POP3 credentials provided, check the username and password and try again."
+    imap_authentication_error: "There was an issue with the IMAP credentials provided, check the username and password and try again."
+    imap_no_response_error: "An error occurred when communicating with the IMAP server. %{message}"
+    smtp_authentication_error: "There was an issue with the SMTP credentials provided, check the username and password and try again."
+    smtp_server_busy_error: "The SMTP server is currently busy, try again later."
+    smtp_unhandled_error: "There was an unhandled error when communicating with the SMTP server. %{message}"
+    connection_error: "There was an issue connecting with the server, check the server name and port and try again."
+    timeout_error: "Connection to the server timed out, check the server name and port and try again."
+    unhandled_error: "Unhandled error when testing email settings. %{message}"
   webauthn:
     validation:
       invalid_type_error: "The webauthn type provided was invalid. Valid types are webauthn.get and webauthn.create."
@@ -1955,6 +1967,7 @@ en:
     reviewable_claiming: "Does reviewable content need to be claimed before it can be acted upon?"
     reviewable_default_topics: "Show reviewable content grouped by topic by default"
     reviewable_default_visibility: "Don't show reviewable items unless they meet this priority"
+    reviewable_low_priority_threshold: "The priority filter hides reviewable that doesn't meet this score unless the '(any)' filter is used."
     high_trust_flaggers_auto_hide_posts: "New user posts are automatically hidden after being flagged as spam by a TL3+ user"
     cooldown_hours_until_reflag: "How much time users will have to wait until they are able to reflag a post"
 
@@ -1993,6 +2006,7 @@ en:
 
     forwarded_emails_behaviour: "How to treat a forwarded email to Discourse"
     always_show_trimmed_content: "Always show trimmed part of incoming emails. WARNING: might reveal email addresses."
+    trim_incoming_emails: "Trim part of the incoming emails that isn't relevant."
     private_email: "Don't include content from posts or topics in email title or email body. NOTE: also disables digest emails."
     email_total_attachment_size_limit_kb: "Max total size of files attached to outgoing emails in kB. Set to 0 to disable sending of attachments."
     post_excerpts_in_emails: "In notification emails, always send excerpts instead of full posts"
@@ -3937,6 +3951,8 @@ en:
   page_forbidden:
     title: "Oops! That page is private."
 
+  site_setting_missing: "`%{name}` site setting has to be set."
+
   page_not_found:
     title: "Oops! That page doesn’t exist or is private."
     popular_topics: "Popular"
@@ -4913,6 +4929,7 @@ en:
 
   reviewables:
     already_handled: "Thanks, but we've already reviewed that post and determined it does not need to be flagged again."
+    already_handled_and_user_not_exist: "Thanks, but someone already reviewed and that user no longer exists."
     priorities:
       low: "Low"
       medium: "Medium"

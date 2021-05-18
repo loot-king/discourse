@@ -347,18 +347,6 @@ he:
       search_placeholder: "חיפוש סימניות לפי שם, כותרת הנושא או תוכן הפוסט"
       search: "חיפוש"
       reminders:
-        later_today: "בהמשך היום"
-        next_business_day: "יום העסקים הבא"
-        tomorrow: "מחר"
-        next_week: "בשבוע הבא"
-        post_local_date: "תאריך בפוסט"
-        later_this_week: "בהמשך השבוע"
-        start_of_next_business_week: "יום שני"
-        start_of_next_business_week_alt: "יום שני הבא"
-        next_month: "חודש הבא"
-        custom: "תאריך ושעה מותאמים אישית"
-        last_custom: "האחרון"
-        none: "לא נדרשת תזכורת"
         today_with_time: "היום ב־%{time}"
         tomorrow_with_time: "מחר ב־%{time}"
         at_time: "ב־%{date_time}"
@@ -400,6 +388,7 @@ he:
     upload: "העלאה"
     uploading: "בהליכי העלאה..."
     uploading_filename: "מעלה: %{filename}..."
+    processing_filename: "מתבצע עיבוד: %{filename}…"
     clipboard: "לוח"
     uploaded: "הועלה!"
     pasting: "מדביק..."
@@ -550,7 +539,8 @@ he:
           created_at_asc: "מועד יצירה (הפוך)"
         priority:
           title: "עדיפות מזערית"
-          low: "(כלשהו)"
+          any: "(כלשהו)"
+          low: "נמוכה"
           medium: "בינונית"
           high: "גבוהה"
       conversation:
@@ -588,6 +578,8 @@ he:
           title: "הוספת פוסט לתור"
         reviewable_user:
           title: "משתמש"
+        reviewable_post:
+          title: "פוסט"
       approval:
         title: "הפוסט זקוק לאישור"
         description: "הפוסט התקבל אך הוא נתון לאישור מפקח בטרם הצגתו. נא להתאזר בסבלנות."
@@ -641,7 +633,6 @@ he:
       custom: "תאריך ושעה מותאמים אישית"
       relative: "זמן יחסי"
       none: "אין צורך"
-      last_custom: "האחרון"
     user_action:
       user_posted_topic: "<a href='%{userUrl}'>%{user}</a> פרסם <a href='%{topicUrl}'>את הנושא</a>"
       you_posted_topic: "<a href='%{userUrl}'>את/ה</a> פרסמת <a href='%{topicUrl}'>את הנושא</a>"
@@ -1060,6 +1051,10 @@ he:
       dismiss_notifications: "בטלו הכל"
       dismiss_notifications_tooltip: "סימון כל ההתראות שלא נקראו כהתראות שנקראו"
       no_messages_title: "אין לך הודעות כלל"
+      no_bookmarks_title: "עדיין לא הוספת שום דבר לסימניות"
+      no_bookmarks_body: >
+        ניתן להתחיל להוסיף פוסטים לסימניות עם הכפתור %{icon} והן תופענה כאן לפנייה בקלות. ניתן גם לתזמן תזכורת!
+      no_notifications_title: "אין לך התראות עדיין"
       first_notification: "התראה ראשונה! בחרו אותה כדי להתחיל."
       dynamic_favicon: "הצגת ספירה בסמל הדפדפן"
       skip_new_user_tips:
@@ -1290,6 +1285,7 @@ he:
         uploaded_avatar_empty: "הוסיפו תמונה אישית"
         upload_title: "העלאת התמונה שלך"
         image_is_not_a_square: "אזהרה: קיצצנו את התמונה שלך; האורך והרוחב לא היו שווים."
+        logo_small: "הלוגו הקטן של האתר. משמש כבררת מחדל."
       change_profile_background:
         title: "כותרת פרופיל"
         instructions: "כותרות הפרופילים ימורכזו ורוחבן ייקבע ל־1110 פיקסלים כבררת מחדל."
@@ -1516,9 +1512,7 @@ he:
           expired_at_time: "פגה ב־%{time}."
           show_advanced: "הצגת אפשרויות מתקדמות"
           hide_advanced: "הסתרת אפשרויות מתקדמות"
-          type_link: "להזמין אדם אחד או יותר עם קישור"
-          type_email: "להזמין כתובת דוא״ל בודדה"
-          email: "הגבלה לכתובת דוא״ל:"
+          restrict_email: "להגביל את ההזמנה לכתובת דוא״ל אחת"
           max_redemptions_allowed: "מספר השימושים המרבי:"
           add_to_groups: "הוספה לקבוצות:"
           invite_to_topic: "שליחה לנושא עם הכניסה הראשונה:"
@@ -2199,14 +2193,15 @@ he:
       from_my_computer: "מהמחשב שלי"
       from_the_web: "מהאינטרנט"
       remote_tip: "קישור לתמונה"
-      remote_tip_with_attachments: "קישור לתמונה או לקובץ %{authorized_extensions}"
+      remote_tip_with_attachments: "קישור לתמונה או לקובץ"
       local_tip: "בחרו תמונות ממכשירכם"
-      local_tip_with_attachments: "בחירת תמונות או קבצים מהמכשיר שלך %{authorized_extensions}"
+      local_tip_with_attachments: "בחירת תמונות או קבצים מהמכשיר שלך"
       hint: "(ניתן גם לגרור לעורך להעלאה)"
       hint_for_supported_browsers: "תוכלו גם לגרור או להדביק תמונות לעורך"
       uploading: "מעלה"
       select_file: "בחירת קובץ"
       default_image_alt_text: תמונה
+      supported_formats: "תצורות קבצים נתמכות"
     search:
       sort_by: "מיון על פי"
       relevance: "רלוונטיות"
@@ -2580,12 +2575,15 @@ he:
         reasons:
           mailing_list_mode: "מצב רשימת תפוצה פעיל, לכן תישלח אליך התראה בדוא״ל על תגובות לנושא זה."
           "3_10": "תקבלו התראות כיוון שאתם צופים בתג שקשור לנושא זה."
+          "3_10_stale": "תישלחנה אליך הודעות כיוון שבחרת לעקוב אחר תגית בנושא הזה בעבר."
           "3_6": "תקבלו התראות כיוון שאתם עוקבים אחרי קטגוריה זו."
+          "3_6_stale": "תישלחנה אליך הודעות כיוון שבחרת לעקוב אחר הקטגוריה הזאת בעבר."
           "3_5": "תקבלו התראות כיוון שהתחלתם לעקוב אחרי הנושא הזה אוטומטית."
           "3_2": "תקבלו התראות כיוון שאתם עוקבים אחרי הנושא הזה."
           "3_1": "תקבלו התראות כיוון שאתם יצרתם את הנושא הזה."
           "3": "תקבלו התראות כיוון שאתם עוקבים אחרי הנושא זה."
           "2_8": "תראו ספירה של תגובות חדשות כיוון שאתם עוקבים אחר קטגוריה זו."
+          "2_8_stale": "יופיע מניין תגובות חדשות כיוון שבחרת לעקוב אחר קטגוריה זו בעבר."
           "2_4": "תראו ספירה של תגובות חדשות כיוון שפרסמתם תגובה לנושא זה."
           "2_2": "תראו ספירה של תגובות חדשות כיוון שאתם עוקבים אחר נושא זה:"
           "2": 'יופיע עיטור עם מספר התגובות החדשות מכיוון ש<a href="%{basePath}/u/%{username}/preferences/notifications">קראת את הנושא הזה</a>.'
@@ -2653,6 +2651,17 @@ he:
         title: "שיתוף"
         extended_title: "שתף קישור"
         help: "שתפו קישור לנושא זה"
+        instructions: "שיתוף קישור לנושא זה:"
+        copied: "קישור הנושא הועתק."
+        notify_users:
+          title: "להודיע"
+          instructions: "להודיע למשתמשים הבאים על הנושא הזה:"
+          success:
+            one: "נשלחה הודעה אל %{username} על הנושא הזה."
+            two: "נשלחה הודעה לכולם על הנושא הזה."
+            many: "נשלחה הודעה לכולם על הנושא הזה."
+            other: "נשלחה הודעה לכולם על הנושא הזה."
+        invite_users: "להזמין"
       print:
         title: "הדפסה"
         help: "פתיחת גרסה ידידותית להדפסה של נושא זה"
@@ -3369,7 +3378,7 @@ he:
       many: "משתמשים"
       other: "משתמשים"
     category_title: "קטגוריה"
-    history: "היסטוריה"
+    history: "היסטוריה, 100 התיקונים האחרונים"
     changed_by: "מאת %{author}"
     raw_email:
       title: "דוא״ל נכנס"
@@ -3469,6 +3478,7 @@ he:
       close: "סגירה (Esc)"
       content_load_error: 'אין אפשרות לטעון את ה<a href="%url%">תוכן הזה</a>.'
       image_load_error: 'אין אפשרות לטעון את ה<a href="%url%">תמונה הזו</a>.'
+    cannot_render_video: לא ניתן לעבד את הסרטון הזה מכיוון שהדפדפן שלך אינו תומך במקודד.
     keyboard_shortcuts_help:
       shortcut_key_delimiter_comma: ", "
       shortcut_key_delimiter_plus: "+"
@@ -3702,6 +3712,7 @@ he:
         everyone_can_use: "ניתן להשתמש בתגיות בכל מקום"
         usable_only_by_groups: "התגיות גלויות לכולם אך רק הקבוצות הבאות יכולות להשתמש בהן"
         visible_only_to_groups: "התגיות גלויות לקבוצות הבאות בלבד"
+        cannot_save: "לא ניתן לשמור את קבוצת התגיות. נא לוודא שיש לפחות תגית אחד, ששם קבוצת התגיות אינו ריק ושנבחרה קבוצה לצורך הרשאת תגיות."
       topics:
         none:
           unread: "אין לך נושאים שלא נקראו."
@@ -4040,7 +4051,11 @@ he:
           name: "אירוע הענקת עיטור"
           details: "כמשתמש מקבל עיטור."
         group_user_event:
+          name: "אירוע משתמש בקבוצה"
           details: "כאשר משתמש מתווסף או נגרע מקבוצה."
+        like_event:
+          name: "אירוע לייק"
+          details: "כשמשתמש מצביע לייק בפוסט."
         delivery_status:
           title: "מצב שליחה"
           inactive: "לא פעיל"
@@ -4353,6 +4368,8 @@ he:
           yaml:
             text: "YAML"
             title: "עריכת הגדרות ערכת העיצוב בתצורת YAML"
+          scss_color_variables_warning: "השימוש במשתני צבע ליבת SCSS בערכות עיצוב הושמט. נא להשתמש במאפייני CSS מותאמים אישית במקום. <a href=\"https://meta.discourse.org/t/-/77551#color-variables-2\" target=\"_blank\">במדריך הזה</a> יש פרטים נוספים."
+          scss_warning_inline: "השימוש במשתני צבע ליבת SCSS בערכות עיצוב הושמט."
         colors:
           select_base:
             title: "בחירת מבחר צבעים בסיסי"
@@ -4686,17 +4703,17 @@ he:
           require_approval: "דרישת אישור"
           flag: "דגל"
           replace: "החלפה"
-          tag: "תיוג אוטומטי"
+          tag: "תגית"
         action_descriptions:
           block: "למנוע פרסום של פוסטים שמכילים את המילים הללו. בפני המשתמש תופיע הודעת שגיאה בעת ניסיון פרסום הפוסט."
           censor: "להרשות פוסטים שמכילים מילים אלו, אבל להחליף אותן בתווים שמסתירים את המילים המצונזרות."
           require_approval: "פוסטים שמכילים מילים אלו יצטרכו לקבל אישור מהסגל לפני שניתן יהיה לצפות בהם."
           flag: "להרשות פוסטים שמכילים מילים אלו, אבל לסמן אותם כבלתי הולמים כדי שמפקחים יוכלו לסקור אותם."
           replace: "להחליף מילים בפוסטים במילים או קישורים אחרים"
-          tag: "לתייג אוטומטית פוסטים עם המילים האלה"
+          tag: "לתייג אוטומטית נושאים לפי הפוסט הראשון בהם"
         form:
-          label: "מילה חדשה"
-          placeholder: "מילה מלאה או * כתו כל"
+          label: "יש מילה או ביטוי"
+          placeholder: "נא למלא מילה או ביטוי (* הוא תו כללי)"
           placeholder_regexp: "ביטוי רגולרי"
           replacement_label: "חלופה"
           replacement_placeholder: "דוגמה או https://example.com"
@@ -5002,6 +5019,10 @@ he:
           title: "הצגה על כרטיס משתמש?"
           enabled: "מוצג על כרטיס משתמש"
           disabled: "לא מוצג על כרטיס משתמש"
+        searchable:
+          title: "זמין לחיפוש?"
+          enabled: "זמין לחיפוש"
+          disabled: "לא זמין לחיפוש"
         field_types:
           text: "שדה טקסט"
           confirm: "אישור"

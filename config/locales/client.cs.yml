@@ -130,6 +130,11 @@ cs:
           few: "před %{count} dny"
           many: "před %{count} dny"
           other: "před %{count} dny"
+        x_months:
+          one: "před %{count} měsícem"
+          few: "před %{count} měsíci"
+          many: "před %{count} měsíci"
+          other: "před %{count} měsíci"
       later:
         x_days:
           one: "za %{count} den"
@@ -320,18 +325,6 @@ cs:
       search_placeholder: "Hledat záložky podle názvu, názvu tématu nebo obsahu příspěvku"
       search: "Vyhledat"
       reminders:
-        later_today: "Později během dnešního dne"
-        next_business_day: "Následující pracovní den"
-        tomorrow: "Zítra"
-        next_week: "Další týden"
-        post_local_date: "Datum v příspěvku"
-        later_this_week: "Později během tohoto týdne"
-        start_of_next_business_week: "Pondělí"
-        start_of_next_business_week_alt: "Příští pondělí"
-        next_month: "Další měsíc"
-        custom: "Vlastní datum a čas"
-        last_custom: "Poslední"
-        none: "Žádné připomenutí není potřeba"
         today_with_time: "dnes v %{time}"
         tomorrow_with_time: "zítra v %{time}"
         at_time: "v %{date_time}"
@@ -345,6 +338,8 @@ cs:
       new_topic: "Nový koncept tématu"
       new_private_message: "Nový koncept soukromé zprávy"
       topic_reply: "Koncept odpovědi"
+      abandon:
+        yes_value: "Zahodit"
     topic_count_latest:
       one: "Zobrazit %{count} nové nebo upravené téma"
       few: "Zobrazit %{count} nová nebo upravená témata"
@@ -393,6 +388,7 @@ cs:
         total: "Celkem"
       delete: "Smazat"
       settings:
+        saved: "Uloženo"
         save_changes: "Uložit změny"
         title: "Nastavení"
       moderation_history: "Historie moderování"
@@ -407,6 +403,16 @@ cs:
         deleted: "[Téma smazáno]"
         original: "(původní téma)"
         details: "podrobnosti"
+        unique_users:
+          one: "%{count} uživatel"
+          few: "%{count} uživatelé"
+          many: "%{count} uživatelů"
+          other: "%{count} uživatelů"
+      replies:
+        one: "%{count} odpověď"
+        few: "%{count} odpovědi"
+        many: "%{count} odpovědí"
+        other: "%{count} odpovědí"
       edit: "Upravit"
       save: "Uložit"
       cancel: "Zrušit"
@@ -427,7 +433,6 @@ cs:
           created_at_asc: "Vytvořeno v (obráceně)"
         priority:
           title: "Minimální priorita"
-          low: "(libovolný)"
           medium: "Střední"
           high: "Vysoká"
       conversation:
@@ -816,6 +821,7 @@ cs:
       external_links_in_new_tab: "Otevírat všechny externí odkazy do nové záložky"
       enable_quoting: "Povolit odpověď s citací z označeného textu"
       change: "změnit"
+      featured_topic: "Doporučené téma"
       moderator: "%{user} je moderátor"
       admin: "%{user} je administrátor"
       moderator_tooltip: "Tento uživatel je moderátor"
@@ -824,6 +830,7 @@ cs:
       suspended_notice: "Uživatel je suspendován do %{date}."
       suspended_permanently: "Tento uživatel je suspendován."
       suspended_reason: "Důvod: "
+      github_profile: "GitHub"
       email_activity_summary: "Souhrn aktivit"
       mailing_list_mode:
         label: "Režim elektronická pošta"
@@ -862,6 +869,7 @@ cs:
       admin_delete: "Smazat"
       users: "Uživatelé"
       muted_users: "Ztišení"
+      ignored_users: "Ignorováno"
       tracked_topics_link: "Zobrazit"
       automatically_unpin_topics: "Atomaticky odepni téma jakmile se dostanu na konec."
       apps: "Aplikace"
@@ -1151,6 +1159,7 @@ cs:
         time_read: "Čas čtení"
         days_visited: "Přítomen dnů"
         account_age_days: "Stáří účtu ve dnech"
+        create: "Pozvat"
         valid_for: "Odkaz pozvánky je platný pouze pro tuto emailovou adresu: %{email}"
         invite_link:
           success: "Odkaz pozvánky byl úspěšně vygenerován!"
@@ -1296,7 +1305,6 @@ cs:
       sign_up: "Registrovat se"
       hide_session: "Připomenout mi zítra"
       hide_forever: "děkuji, ne"
-      hidden_for_session: "Dobrá, zeptám se tě zítra. Pro založení účtu můžeš také vždy použít 'Přihlásit se'."
       intro: "Zdravíčko! Vypadá to, že si užíváte naše diskuze, ale ještě nemáte vlastní účet."
       value_prop: "Pokud si založíš účet, budeme si přesně pamatovat, co jsi četl, takže se vždycky vrátíš do bodu, odkud jsi odešel. Také budeš dostávat upozornění zde a přes e-mail, kdykoli ti někdo odpoví. A můžeš přidávat 'to se mi líbí' a šířit tak lásku. :heartpulse:"
     summary:
@@ -1337,6 +1345,7 @@ cs:
     email_login:
       link_label: "Chci odkaz na login do emailu"
       button_label: "přes email"
+      emoji: "uzamknout emoji"
       complete_username: "Pokud je tu účet, který používá uživatelské jméno <b>%{username}</b>, měl by vám za chvilku přijít email s přihlašovacím odkazem."
       complete_email: "Pokud je tu účet s emailovou adresou <b>%{email}</b>, měl by vám za chvilku přijít email s přihlašovacím odkazem."
       complete_username_found: "Našli jsme účet s uživatelským jménem <b>%{username}</b>, za chvilku by měl přijít email s přihlašovacím odkazem."
@@ -1347,6 +1356,7 @@ cs:
     login:
       username: "Uživatel"
       password: "Heslo"
+      second_factor_title: "Dvoufaktorové ověření"
       second_factor_description: "Prosím zadejte autentikační kód z vaší aplikace:"
       second_factor_backup_description: "Prosíme zadejte jeden ze svých záložních kódů:"
       caps_lock_warning: "zapnutý Caps Lock"
@@ -1398,6 +1408,7 @@ cs:
       accept_invite: "Přijmout pozvání"
       success: "Váš účet byl vytvořen a nyní jste přihlášeni."
       name_label: "Jméno"
+      password_label: "Heslo"
       optional_description: "(volitelné)"
     password_reset:
       continue: "Pokračovat na %{site_name}"
@@ -1588,6 +1599,12 @@ cs:
       posted: "<span>%{username}</span> %{description}"
       edited: "<span>%{username}</span> %{description}"
       liked: "<span>%{username}</span> %{description}"
+      liked_2: "<span class='double-user'>%{username}, %{username2}</span> %{description}"
+      liked_many:
+        one: "<span class='multi-user'>%{username}, %{username2} a %{count} další</span> %{description}"
+        few: "<span class='multi-user'>%{username}, %{username2} a %{count} další</span> %{description}"
+        many: "<span class='multi-user'>%{username}, %{username2} a %{count} dalších</span> %{description}"
+        other: "<span class='multi-user'>%{username}, %{username2} a %{count} dalších</span> %{description}"
       liked_consolidated: "<span>%{username}</span> %{description}"
       private_message: "<span>%{username}</span> %{description}"
       invited_to_private_message: "<p><span>%{username}</span> %{description}"
@@ -1621,10 +1638,7 @@ cs:
       from_my_computer: "Z mého zařízení"
       from_the_web: "Z webu"
       remote_tip: "odkaz na obrázek"
-      remote_tip_with_attachments: "odkaz na obrázek nebo soubor %{authorized_extensions}"
       local_tip: "vyber obrázky z tvého zařízení"
-      local_tip_with_attachments: "vyber obrázky nebo soubory ze svého zařízení %{authorized_extensions}"
-      hint: "(můžete také rovnou soubor do editoru přetáhnout)"
       hint_for_supported_browsers: "také můžeš obrázky do editoru přetáhnout nebo vložit"
       uploading: "Nahrávám"
       select_file: "Vyberte soubor"
@@ -2470,7 +2484,6 @@ cs:
       many: "uživatelů"
       other: "uživatelů"
     category_title: "Kategorie"
-    history: "Historie"
     changed_by: "od uživatele %{author}"
     raw_email:
       title: "Příchozí email"
@@ -3363,7 +3376,6 @@ cs:
           require_approval: "Příspěvky obsahující tato slova budou vyžadovat schválení zaměstnanců před schválením."
           flag: "Povolit příspěvky obsahující tato slova, ale oflagovat je jako nevhodně, aby je mohli moderátoři kontrolovat."
         form:
-          placeholder: "celé slovo nebo* jako zástupný znak"
           placeholder_regexp: "obvyklý výraz"
           add: "přidat"
           success: "Úspěch"

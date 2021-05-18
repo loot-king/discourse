@@ -246,15 +246,6 @@ id:
         on_owner_reply: "Setelah saya membalas topik ini"
       search: "Cari"
       reminders:
-        later_today: "Nanti hari ini"
-        next_business_day: "Hari kerja berikutnya"
-        tomorrow: "Besok"
-        next_week: "Minggu depan"
-        start_of_next_business_week: "Senin"
-        start_of_next_business_week_alt: "Senin depan"
-        next_month: "Bulan depan"
-        custom: "Tanggal dan waktu tersuai"
-        last_custom: "Terakhir"
         today_with_time: "hari ini pada %{time}"
         tomorrow_with_time: "besok pada %{time}"
         at_time: "pada %{date_time}"
@@ -392,7 +383,6 @@ id:
           created_at_asc: "Dibuat Pada (terbalik)"
         priority:
           title: "Prioritas Minimum"
-          low: "(apa saja)"
           medium: "Sedang"
           high: "Tinggi"
       conversation:
@@ -438,7 +428,6 @@ id:
     time_shortcut:
       start_of_next_business_week_alt: "Senin Depan"
       next_month: "Bulan depan"
-      last_custom: "Terakhir"
     user_action:
       user_posted_topic: "<a href='%{userUrl}'>%{user}</a> memposting <a href='%{topicUrl}'>topik</a>"
       you_posted_topic: "<a href='%{userUrl}'>Anda</a> memposting <a href='%{topicUrl}'>the topic</a>"
@@ -663,6 +652,7 @@ id:
         other: "%{count} topik baru dalam seminggu terakhir."
       topic_stat_sentence_month:
         other: "%{count} topik baru dalam sebulan terakhir."
+      n_more: "Kategori (%{count} lagi)..."
     ip_lookup:
       title: Pencarian Alamat IP
       hostname: nama host
@@ -753,6 +743,7 @@ id:
       suspended_notice: "Pengguna ini ditangguhkan sampai %{date}"
       suspended_permanently: "Pengguna ini dicekal"
       suspended_reason: "Alasan:"
+      github_profile: "GitHub"
       email_activity_summary: "Jumlah aktifitas"
       mailing_list_mode:
         label: "mode milis"
@@ -850,6 +841,8 @@ id:
         title: "Ganti Username"
         taken: "Maaf, username tersebut sudah ada yang menggunakan"
         invalid: "Username tersebut tidak valid. Username harus berupa angka dan huruf"
+      add_email:
+        add: "menambahkan"
       change_email:
         title: "Ganti Alamat Surel"
         taken: "Maaf, alamat surel tersebut tidak tersedia."
@@ -1010,6 +1003,8 @@ id:
           other: "hari berkunjung"
         topics_entered:
           other: "topik dilihat"
+        bookmark_count:
+          other: "markah"
         top_replies: "Balasan Teratas"
         no_replies: "Belum ada balasan"
         more_replies: "Balasan lebih banyak"
@@ -1091,6 +1086,7 @@ id:
       disable: "Tunjukkan Tulisan yang Dihapus"
     private_message_info:
       title: "Pesan"
+      edit: "Tambah atau Hapus..."
       leave_message: "Apakah Anda yakin ingin meninggalkan pesan ini?"
       remove_allowed_user: "Apakah Anda yakin ingin menghapus %{name} dari pesan ini?"
       remove_allowed_group: "Apakah Anda yakin ingin menghapus %{name} dari pesan ini?"
@@ -1149,6 +1145,7 @@ id:
       invited_by: "Anda telah diundang oleh:"
       accept_invite: "Terima Undangan"
       name_label: "Nama"
+      password_label: "Kata Sandi"
       optional_description: "(opsional)"
     password_reset:
       continue: "Lanjut ke %{site_name}"
@@ -1297,6 +1294,9 @@ id:
       advanced:
         posted_by:
           label: Dibuat oleh
+        post:
+          count:
+            label: Pos
     new_item: "baru"
     topics:
       bulk:
@@ -1319,6 +1319,7 @@ id:
         title: "Ubah"
       list: "Topik"
       new: "topik baru"
+      unread: "belum dibaca"
       new_topics:
         other: "%{count} topik baru"
       title: "Topik"

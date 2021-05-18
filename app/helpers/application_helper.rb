@@ -539,6 +539,7 @@ module ApplicationHelper
       if ENV['DEBUG_PRELOADED_APP_DATA']
         setup_data[:debug_preloaded_app_data] = true
       end
+      setup_data[:mb_last_file_change_id] = MessageBus.last_id('/file-change')
     end
 
     if guardian.can_enable_safe_mode? && params["safe_mode"]
@@ -591,6 +592,12 @@ module ApplicationHelper
         cookies.delete(:authentication_data, path: Discourse.base_path("/"))
       end
       current_user ? nil : value
+    end
+  end
+
+  def hijack_if_ember_cli!
+    if request.headers["HTTP_X_DISCOURSE_EMBER_CLI"] == "true"
+      raise ApplicationController::EmberCLIHijacked.new
     end
   end
 end

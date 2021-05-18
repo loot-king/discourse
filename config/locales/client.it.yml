@@ -295,18 +295,6 @@ it:
       search_placeholder: "Cerca nei segnalibri per nome, titolo dell'argomento o contenuto del messaggio"
       search: "Cerca"
       reminders:
-        later_today: "Più tardi oggi"
-        next_business_day: "Il prossimo giorno lavorativo"
-        tomorrow: "Domani"
-        next_week: "La prossima settimana"
-        post_local_date: "Data nel messaggio"
-        later_this_week: "Più tardi questa settimana"
-        start_of_next_business_week: "Lunedi"
-        start_of_next_business_week_alt: "Il prossimo Lunedì"
-        next_month: "Il prossimo mese"
-        custom: "Data e ora personalizzate"
-        last_custom: "Ultimo"
-        none: "Nessun promemoria necessario"
         today_with_time: "oggi alle %{time}"
         tomorrow_with_time: "domani alle %{time}"
         at_time: "a %{date_time}"
@@ -342,6 +330,7 @@ it:
     upload: "Carica"
     uploading: "In caricamento..."
     uploading_filename: "In caricamento: %{filename}..."
+    processing_filename: "In elaborazione: %{filename}..."
     clipboard: "clipboard"
     uploaded: "Caricato!"
     pasting: "Incollando..."
@@ -478,7 +467,8 @@ it:
           created_at_asc: "Creato il (inverso)"
         priority:
           title: "Priorità Minima"
-          low: "(qualsiasi)"
+          any: "(qualsiasi)"
+          low: "Bassa"
           medium: "Media"
           high: "Alta"
       conversation:
@@ -516,6 +506,8 @@ it:
           title: "Messaggio accodato"
         reviewable_user:
           title: "Utente"
+        reviewable_post:
+          title: "Messaggio"
       approval:
         title: "Messaggio Da Approvare"
         description: "Abbiamo ricevuto il tuo messaggio ma prima che appaia è necessario che venga approvato da un moderatore. Per favore sii paziente."
@@ -557,7 +549,6 @@ it:
       custom: "Data e ora personalizzate"
       relative: "Tempo relativo"
       none: "Nessuno necessario"
-      last_custom: "Ultimo"
     user_action:
       user_posted_topic: "<a href='%{userUrl}'>%{user}</a> ha pubblicato <a href='%{topicUrl}'>l'argomento</a>"
       you_posted_topic: "<a href='%{userUrl}'>Tu</a> hai pubblicato <a href='%{topicUrl}'>l'argomento</a>"
@@ -964,6 +955,10 @@ it:
       no_messages_title: "Non hai messaggi"
       no_messages_body: >
         Hai la necessità di avere una conversazione privata con qualcuno? Invia un messaggio selezionando l'avatar e utilizzando il pulsante del messaggio %{icon}<br><br> Se hai bisogno di aiuto, puoi <a href='%{aboutUrl}'>inviare un messaggio a un membro dello staff</a>.
+      no_bookmarks_title: "Non hai ancora aggiunto alcun segnalibro"
+      no_bookmarks_body: >
+        Inizia ad aggiungere segnalibri ai messaggi con il bottone %{icon} e verranno elencati qui per una facile consultazione. Puoi anche impostare un promemoria!
+      no_notifications_title: "Non hai ancora notifiche"
       first_notification: "La tua prima notifica! Selezionala per iniziare."
       dynamic_favicon: "Mostra il contatore sull'icona del browser"
       skip_new_user_tips:
@@ -1190,6 +1185,7 @@ it:
         uploaded_avatar_empty: "Aggiungi un'immagine personalizzata"
         upload_title: "Carica la tua foto"
         image_is_not_a_square: "Attenzione: abbiamo ritagliato l'immagine; la larghezza e l'altezza non erano uguali."
+        logo_small: "Logo piccolo del sito. Usato come impostazione predefinita."
       change_profile_background:
         title: "Intestazione Profilo "
         instructions: "Le intestazioni dei profili saranno centrate e avranno una larghezza predefinita di 1110 px."
@@ -1412,9 +1408,7 @@ it:
           expired_at_time: "Scaduto alle %{time}."
           show_advanced: "Mostra Opzioni Avanzate"
           hide_advanced: "Nascondi opzioni avanzate"
-          type_link: "Invita una o più persone con un link"
-          type_email: "Invita un solo indirizzo email"
-          email: "Limita all'indirizzo email:"
+          restrict_email: "Limita l'invito a un solo indirizzo email"
           max_redemptions_allowed: "Numero massimo di utilizzi:"
           add_to_groups: "Aggiungi ai gruppi:"
           invite_to_topic: "Invia all'argomento al primo accesso:"
@@ -1574,7 +1568,7 @@ it:
       sign_up: "Iscriviti"
       hide_session: "Ricordamelo domani"
       hide_forever: "no grazie"
-      hidden_for_session: "Ok, te lo chiederò domani. Puoi anche usare 'Connetti' per creare un account."
+      hidden_for_session: "OK, te lo chiederemo domani. Puoi sempre utilizzare \"Accedi\" anche per creare un account."
       intro: "Ciao! Sembra che la discussione ti interessi, ma non hai ancora registrato un account."
       value_prop: "Quando crei un account, potremo ricordare esattamente cosa hai letto, in modo che tu possa riprendere esattamente da dove hai lasciato. Riceverai inoltre notifiche, qui o via email, quando qualcuno ti risponde. Potrai anche mettere \"Mi piace\" per mostrare il tuo apprezzamento :heartpulse:"
     summary:
@@ -1911,6 +1905,8 @@ it:
       yourself_confirm:
         title: "Hai dimenticato di aggiungere i destinatari?"
         body: "Per ora il messaggio sarà inviato solo a te stesso!"
+      slow_mode:
+        error: "Questo argomento è in modalità lenta. Hai già postato di recente, puoi postare di nuovo tra %{timeLeft}."
       admin_options_title: "Impostazioni dello staff opzionali per l'argomento"
       composer_actions:
         reply: Rispondi
@@ -2039,14 +2035,13 @@ it:
       from_my_computer: "Dal mio dispositivo"
       from_the_web: "Dal web"
       remote_tip: "collegamento all'immagine"
-      remote_tip_with_attachments: "collegamento all'immagine o al file %{authorized_extensions}"
       local_tip: "seleziona immagini dal tuo dispositivo"
-      local_tip_with_attachments: "seleziona immagini o file dal tuo dispositivo %{authorized_extensions}"
-      hint: "(puoi anche trascinarle nell'editor per caricarle)"
+      hint: "(puoi anche trascinare e rilasciare nell'editor per caricare)"
       hint_for_supported_browsers: "puoi fare il \"trascina e rilascia\" o incollare immagini nell'editor"
       uploading: "In caricamento"
       select_file: "Seleziona File"
       default_image_alt_text: immagine
+      supported_formats: "formati supportati"
     search:
       sort_by: "Ordina per"
       relevance: "Rilevanza"
@@ -2281,6 +2276,7 @@ it:
         select: "Gli utenti possono pubblicare in questo argomento solo una volta ogni:"
         description: "Per promuovere discussioni ponderate in argomenti in rapida evoluzione o controversi, gli utenti devono attendere prima di pubblicare nuovamente in questo argomento."
         save: "Abilita"
+        enabled_until: "Abilitato fino a:"
         remove: "Disattiva"
         hours: "Ore:"
         minutes: "Minuti:"
@@ -2390,6 +2386,7 @@ it:
         reasons:
           mailing_list_mode: "Hai la modalità mailing list abilitata, verrai notificato delle risposte a questo argomento via email."
           "3_10": "Riceverai notifiche perché stai osservando un'etichetta in questo argomento."
+          "3_10_stale": "Riceverai notifiche perché in passato stavi seguendo un’etichetta su questo argomento."
           "3_6": "Riceverai notifiche perché stai osservando questa categoria."
           "3_5": "Riceverai notifiche poiché hai iniziato ad osservare questo argomento automaticamente."
           "3_2": "Riceverai notifiche perché stai osservando questo argomento."
@@ -2463,6 +2460,15 @@ it:
         title: "Condividi"
         extended_title: "Condividi un collegamento"
         help: "condividi un collegamento a questo argomento"
+        instructions: "Condividi un link a questo argomento:"
+        copied: "Link all'argomento copiato."
+        notify_users:
+          title: "Notifica"
+          instructions: "Notifica i seguenti utenti su questo argomento:"
+          success:
+            one: "%{username} notificato su questo argomento."
+            other: "Notifica all'argomento inviata correttamente a tutti gli utenti."
+        invite_users: "Invita"
       print:
         title: "Stampa"
         help: "Apri una versione da stampabile di questo argomento"
@@ -3103,7 +3109,6 @@ it:
       one: "utente"
       other: "utenti"
     category_title: "Categoria"
-    history: "Storia"
     changed_by: "da %{author}"
     raw_email:
       title: "Email In Arrivo"
@@ -3191,6 +3196,7 @@ it:
       close: "Chiudi (Esc)"
       content_load_error: 'Caricamento <a href="%url%">del contenuto</a> non riuscito.'
       image_load_error: 'Caricamento <a href="%url%">dell''immagine</a> non riuscito.'
+    cannot_render_video: Questo video non può essere visualizzato perché il tuo browser non supporta il codec.
     keyboard_shortcuts_help:
       shortcut_key_delimiter_comma: ", "
       shortcut_key_delimiter_plus: "+"
@@ -3402,6 +3408,7 @@ it:
         everyone_can_use: "Le etichette possono essere usate da tutti"
         usable_only_by_groups: "Le etichette sono visibili a tutti, ma solo i gruppi seguenti possono usarle"
         visible_only_to_groups: "Le etichette sono visibili soltanto ai seguenti gruppi"
+        cannot_save: "Impossibile salvare il gruppo di etichette. Assicurati che ci sia almeno un'etichetta, che il nome del gruppo di etichette non sia vuoto e che sia selezionato un gruppo etichette per i permessi."
       topics:
         none:
           unread: "Non hai argomenti non letti."
@@ -3736,6 +3743,9 @@ it:
         group_user_event:
           name: "Raggruppa Evento Utente"
           details: "Quando un utente viene aggiunto o rimosso da un gruppo."
+        like_event:
+          name: "Evento Mi Piace"
+          details: "Quando un utente mette Mi piace su un messaggio."
         delivery_status:
           title: "Stato di Consegna"
           inactive: "Non attivo"
@@ -4042,6 +4052,8 @@ it:
           yaml:
             text: "YAML"
             title: "Definisci le impostazioni del tema in formato YAML"
+          scss_color_variables_warning: "L'utilizzo delle variabili di colore SCSS di base nei temi è deprecato. Utilizzare invece le proprietà personalizzate CSS. Vedi <a href=\"https://meta.discourse.org/t/-/77551#color-variables-2\" target=\"_blank\">questa guida</a> per maggiori dettagli."
+          scss_warning_inline: "L'utilizzo delle variabili di colore SCSS di base nei temi è deprecato."
         colors:
           select_base:
             title: "Seleziona la paletta dei colori di base"
@@ -4373,17 +4385,13 @@ it:
           require_approval: "Richiede Approvazione"
           flag: "Segnala"
           replace: "Sostituisci"
-          tag: "Etichetta automatica"
         action_descriptions:
           block: "Impedisci che i messaggi contenenti queste parole siano pubblicati. L'utente visualizzerà un messaggio di errore quando cercherà di pubblicare il messaggio."
           censor: "Consenti i messaggi contenenti queste parole, ma sostituiscile con caratteri che nascondono le parole censurate."
           require_approval: "I messaggi contenenti queste parole richiederanno l'approvazione dello staff prima di poter essere visualizzati."
           flag: "Consenti i messaggi contenenti queste parole, ma segnalale come inappropriate in modo che i moderatori possano revisionarle."
           replace: "Sostituisci le parole nei messaggi con altre parole o link"
-          tag: "Etichetta automaticamente i post con queste parole"
         form:
-          label: "Nuova Parola"
-          placeholder: "parola completa o * come carattere jolly"
           placeholder_regexp: "espressione regolare"
           replacement_label: "Sostituzione"
           replacement_placeholder: "esempio o https://esempio.com"
@@ -4681,6 +4689,10 @@ it:
           title: "Mostrare sulla scheda utente?"
           enabled: "mostrato sulla scheda utente"
           disabled: "non mostrato sulla scheda utente"
+        searchable:
+          title: "Ricercabile?"
+          enabled: "ricercabile"
+          disabled: "non ricercabile"
         field_types:
           text: "Campo Testo"
           confirm: "Conferma"

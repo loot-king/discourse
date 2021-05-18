@@ -175,7 +175,13 @@ class Reviewable < ActiveRecord::Base
         reviewable.save!
       else
         reviewable = find_by(target: target)
-        reviewable.log_history(:transitioned, created_by) if old_status != statuses[:pending]
+
+        if old_status != statuses[:pending]
+          # If we're transitioning back from reviewed to pending, we should recalculate
+          # the score to prevent posts from being hidden.
+          reviewable.recalculate_score
+          reviewable.log_history(:transitioned, created_by)
+        end
       end
     end
 
@@ -212,6 +218,8 @@ class Reviewable < ActiveRecord::Base
 
     update(score: self.score + rs.score, latest_score: rs.created_at, force_review: force_review)
     topic.update(reviewable_score: topic.reviewable_score + rs.score) if topic
+
+    DiscourseEvent.trigger(:reviewable_score_updated, self)
 
     rs
   end
@@ -444,8 +452,6 @@ class Reviewable < ActiveRecord::Base
     to_date: nil,
     additional_filters: {}
   )
-    min_score = Reviewable.min_score_for_priority(priority)
-
     order = case sort_order
             when 'score_asc'
               'reviewables.score ASC, reviewables.created_at DESC'
@@ -487,6 +493,8 @@ class Reviewable < ActiveRecord::Base
       SQL
       )
     end
+
+    min_score = Reviewable.min_score_for_priority(priority)
 
     if min_score > 0 && status == :pending
       result = result.where("reviewables.score >= ? OR reviewables.force_review", min_score)
@@ -582,8 +590,6 @@ class Reviewable < ActiveRecord::Base
     SQL
   end
 
-protected
-
   def recalculate_score
     # pending/agreed scores count
     sql = <<~SQL
@@ -625,7 +631,13 @@ protected
     )
 
     self.score = result[0].score
+
+    DiscourseEvent.trigger(:reviewable_score_updated, self)
+
+    self.score
   end
+
+protected
 
   def increment_version!(version = nil)
     version_result = nil

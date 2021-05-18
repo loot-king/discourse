@@ -57,6 +57,7 @@ nl:
   themes:
     bad_color_scheme: "Kan thema niet bijwerken, ongeldig kleurenpalet"
     other_error: "Er is iets misgegaan bij het bijwerken van het thema"
+    ember_selector_error: "Sorry - het gebruik van #ember of .ember-view CSS-selectors is niet toegestaan, omdat deze namen dynamisch worden gegenereerd tijdens runtime en in de loop van de tijd zullen veranderen, wat uiteindelijk resulteert in defecte CSS. Probeer een andere selector."
     compile_error:
       unrecognized_extension: "Niet-herkende bestandsextensie: %{extension}"
     import_error:
@@ -227,7 +228,7 @@ nl:
   topic_invite:
     failed_to_invite: "De gebruiker kan niet voor dit topic worden uitgenodigd zonder een groepslidmaatschap in een van de volgende groepen: %{group_names}."
     user_exists: "Sorry, die gebruiker is al uitgenodigd. U kunt een gebruiker maar één keer voor een topic uitnodigen."
-    muted_invitee: "Sorry, die gebruiker heeft je gedempt."
+    muted_invitee: "Sorry, die gebruiker heeft u gedempt."
   backup:
     operation_already_running: "Er wordt al een bewerking uitgevoerd. Er kan nu geen nieuwe taak worden gestart."
     backup_file_should_be_tar_gz: "Het back-upbestand dient een .tar.gz-archief te zijn."
@@ -520,6 +521,7 @@ nl:
               in_the_past: "moet in de toekomst zijn."
             duration_minutes:
               cannot_be_zero: "moet groter zijn dan 0."
+              exceeds_maximum: "kan niet meer dan 20 jaar zijn."
         translation_overrides:
           attributes:
             value:
@@ -710,8 +712,8 @@ nl:
     update: "Wachtwoord bijwerken"
     save: "Wachtwoord instellen"
     title: "Wachtwoord herinitialiseren"
-    success: "U hebt uw wachtwoord met succes gewijzigd en bent nu aangemeld."
-    success_unapproved: "U hebt uw wachtwoord met succes gewijzigd."
+    success: "U hebt uw wachtwoord succesvol gewijzigd en bent nu aangemeld."
+    success_unapproved: "U hebt uw wachtwoord succesvol gewijzigd."
   email_login:
     invalid_token: "Sorry, die koppeling voor het aanmelden via e-mail is te oud. Selecteer de knop Aanmelden en gebruik 'Ik ben mijn wachtwoord vergeten' om een nieuwe koppeling te ontvangen."
     title: "E-mailaanmelding"
@@ -727,6 +729,7 @@ nl:
       unknown: "onbekende browser"
     device:
       android: "Android-apparaat"
+      chromebook: "Chrome OS"
       ipad: "iPad"
       iphone: "iPhone"
       ipod: "iPod"
@@ -737,6 +740,7 @@ nl:
       unknown: "onbekend apparaat"
     os:
       android: "Android"
+      chromeos: "Chrome OS"
       ios: "iOS"
       linux: "Linux"
       macos: "macOS"
@@ -1686,7 +1690,6 @@ nl:
     forwarded_emails_behaviour: "Hoe een doorgestuurde e-mail naar Discourse te behandelen"
     always_show_trimmed_content: "Altijd afgekapt deel van inkomende e-mails tonen. WAARSCHUWING: kan e-mailadressen onthullen."
     private_email: "Geen inhoud van berichten of topics in titel of tekst van e-mail opnemen. OPMERKING: schakelt ook e-mailsamenvattingen uit."
-    email_total_attachment_size_limit_kb: "Maximale totale grootte van aan uitgaande e-mails gekoppelde bestanden. Stel dit in op 0 om het verzenden van bijlagen uit te schakelen."
     post_excerpts_in_emails: "In meldingen per e-mail altijd fragmenten sturen in plaats van volledige berichten"
     raw_email_max_length: "Hoeveel tekens moeten worden opgeslagen voor inkomende e-mail."
     raw_rejected_email_max_length: "Hoeveel tekens moeten worden opgeslagen voor geweigerde inkomende e-mail."
@@ -1913,6 +1916,7 @@ nl:
       invalid_string_min_max: "Moet tussen %{min} en %{max} tekens zijn."
       invalid_string_min: "Moet uit minstens %{min} tekens bestaan."
       invalid_string_max: "Mag uit niet meer dan %{max} tekens bestaan."
+      invalid_json: "Ongeldige JSON."
       invalid_reply_by_email_address: "Waarde moet '%{reply_key}' bevatten en afwijken van de melding per e-mail."
       invalid_alternative_reply_by_email_addresses: "Alle waarden moeten '%{reply_key}' bevatten en afwijken van de melding per e-mail."
       pop3_polling_host_is_empty: "U moet een 'pop3 polling host' instellen voordat u POP3-polling inschakelt."
@@ -1937,6 +1941,10 @@ nl:
         regex_invalid: "De reguliere expressie is ongeldig: %{error}"
       unicode_usernames_avatars: "De interne systeemavatars ondersteunen geen Unicode-gebruikersnamen."
       list_value_count: "De lijst moet precies %{count} waarden bevatten."
+    placeholder:
+      discourse_connect_provider_secrets:
+        key: "www.example.com"
+        value: "DiscourseConnect geheim"
   search:
     extreme_load_error: "Website wordt zwaar belast; zoeken is uitgeschakeld, probeer het later opnieuw"
     within_post: "#%{post_number} door %{username}"
@@ -1947,6 +1955,8 @@ nl:
     results_page: "Zoekresultaten voor '%{term}'"
     audio: "[audio]"
     video: "[video]"
+  discourse_connect:
+    login_error: "Aanmeldingsfout"
   original_poster: "Oorspronkelijk geplaatst door"
   most_posts: "Meer berichten"
   most_recent_poster: "Meest recente schrijver"
@@ -2257,7 +2267,7 @@ nl:
       subject_template: "Gefeliciteerd met de promotie van uw vertrouwensniveau!"
     backup_succeeded:
       title: "Back-up geslaagd"
-      subject_template: "Back-up voltooid"
+      subject_template: "Back-up succesvol voltooid"
     backup_failed:
       title: "Back-up mislukt"
       subject_template: "Back-up mislukt"
@@ -2271,7 +2281,7 @@ nl:
         ```
     restore_succeeded:
       title: "Back-up teruggezet"
-      subject_template: "Back-up voltooid"
+      subject_template: "Back-up succesvol voltooid"
     restore_failed:
       title: "Terugzetten mislukt"
       subject_template: "Terugzetten mislukt"
@@ -2408,10 +2418,18 @@ nl:
     pm_participants: "Deelnemers: %{participants}"
     user_replied:
       title: "Gebruiker antwoordde"
+    user_replied_pm:
+      subject_template: "[%{email_prefix}] [PM] %{topic_title}"
     user_linked:
       title: "Gebruiker gekoppeld"
+      subject_template: "[%{email_prefix}] %{topic_title}"
+    user_mentioned:
+      subject_template: "[%{email_prefix}] %{topic_title}"
+    user_mentioned_pm:
+      subject_template: "[%{email_prefix}] [PM] %{topic_title}"
     user_group_mentioned:
       title: "Gebruikersgroep genoemd"
+      subject_template: "[%{email_prefix}] %{topic_title}"
     user_posted:
       title: "Een gebruiker heeft iets geplaatst"
       subject_template: "[%{email_prefix}] %{topic_title}"
@@ -2434,6 +2452,7 @@ nl:
 
         %{respond_instructions}
     user_posted_pm:
+      subject_template: "[%{email_prefix}] [PM] %{topic_title}"
       text_body_template: |
         %{header_instructions}
 
@@ -2539,6 +2558,8 @@ nl:
     suspicious_login:
       title: "Waarschuwing voor nieuwe aanmelding"
       subject_template: "[%{site_name}] Nieuwe aanmelding vanaf %{location}"
+    post_approved:
+      subject_template: "[%{site_name}] Uw bericht is goedgekeurd"
   page_forbidden:
     title: "Oeps! Die pagina is privé."
   page_not_found:
@@ -2692,6 +2713,7 @@ nl:
       description: Heeft een gebruiker uitgenodigd
     campaigner:
       name: Campaigner
+      description: 3 basisgebruikers uitgenodigd
       long_description: |
         Deze badge wordt toegekend wanneer u 3 mensen hebt uitgenodigd die aansluitend genoeg tijd op deze website hebben doorgebracht om basisgebruiker te worden. Een levendige gemeenschap heeft een regelmatige inbreng van nieuwkomers nodig die regelmatig deelnemen en nieuwe geluiden aan de conversaties toevoegen.
     champion:
@@ -2709,12 +2731,12 @@ nl:
       name: Richtlijnen gelezen
       description: Heeft de <a href="%{base_uri}/guidelines">gemeenschapsrichtlijnen</a> gelezen
       long_description: |
-        Deze badge wordt toegekend als je de <a href="%{base_uri}/guidelines">richtlijnen hebt gelezen</a>. Het opvolgen en delen van deze eenvoudige richtlijnen draagt bij aan een veilige, leuke en duurzame community voor iedereen. Bedenk altijd dat er een mens, net zoals u, aan de andere kant van het scherm zit. Wees aardig!
+        Deze badge wordt toegekend als u de <a href="%{base_uri}/guidelines">richtlijnen hebt gelezen</a>. Het opvolgen en delen van deze eenvoudige richtlijnen draagt bij aan een veilige, leuke en duurzame community voor iedereen. Bedenk altijd dat er een mens, net zoals u, aan de andere kant van het scherm zit. Wees aardig!
     reader:
       name: Lezer
       description: Heeft alle antwoorden in een topic met meer dan 100 antwoorden gelezen
       long_description: |
-        Deze badge wordt toegekend wanneer je voor het eerst een topic met meer dan 100 antwoorden hebt gelezen. Als je een gesprek zorgvuldig volgt, kan je de discussie volgen, de verschillende standpunten begrijpen en leidt vaker tot interessante gesprekken. Hoe meer je leest, hoe beter het gesprek wordt. Zoals we zeggen, lezen is fundamenteel! :slight_smile:
+        Deze badge wordt toegekend wanneer u voor het eerst een topic met meer dan 100 antwoorden hebt gelezen. Als u een gesprek zorgvuldig volgt, kan u de discussie volgen en de verschillende standpunten begrijpen; dit leidt tot interessantere gesprekken. Hoe meer u leest, hoe beter het gesprek wordt. Zoals we zeggen, lezen is fundamenteel! :slight_smile:
     popular_link:
       name: Populaire koppeling
       description: Heeft een externe koppeling met 50 klikken geplaatst

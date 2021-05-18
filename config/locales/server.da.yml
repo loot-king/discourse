@@ -242,6 +242,7 @@ da:
     muted_topic: "Beklager, denne bruger ønsker tavshed i dette emne."
     receiver_does_not_allow_pm: "Beklager, denne bruger tillader dig ikke at sende private beskeder til sig."
     sender_does_not_allow_pm: "Beklager, du tillader ikke denne bruger sender dig private beskeder."
+    user_cannot_see_topic: "%{username} kan ikke se emnet."
   backup:
     operation_already_running: "En handling kører i øjeblikket. Kan ikke starte et nyt job lige nu."
     backup_file_should_be_tar_gz: "Backup filen skal være et .tar.gz arkiv."
@@ -884,6 +885,16 @@ da:
       others: "Ingen svar."
     no_drafts:
       self: "Du har ingen udkast; begynd at skrive et svar i et hvilket som helst emne og det vil blive gemt automatisk som et nyt udkast."
+  email_settings:
+    pop3_authentication_error: "Der var et problem med de angivne POP3-legitimationsoplysninger, tjek brugernavnet og adgangskoden, og prøv igen."
+    imap_authentication_error: "Der var et problem med de leverede IMAP-legitimationsoplysninger, tjek brugernavnet og adgangskoden, og prøv igen."
+    imap_no_response_error: "Der opstod en fejl under kommunikation med IMAP-serveren. %{message}"
+    smtp_authentication_error: "Der var et problem med de angivne SMTP-legitimationsoplysninger, tjek brugernavnet og adgangskoden, og prøv igen."
+    smtp_server_busy_error: "SMTP-serveren er i øjeblikket optaget, prøv igen senere."
+    smtp_unhandled_error: "Der opstod en uhåndteret fejl under kommunikation med SMTP-serveren. %{message}"
+    connection_error: "Der var et problem med forbindelsen til serveren, tjek serverens navn og port og prøv igen."
+    timeout_error: "Forbindelsen til serveren fik timeout, tjek serverens navn og port og prøv igen."
+    unhandled_error: "Uhåndteret fejl ved test af e-mail-indstillinger. %{message}"
   webauthn:
     validation:
       invalid_type_error: "Den angivne webauthn-type var ugyldig. Gyldige typer er webauthn.get og webauthn.create."
@@ -1605,6 +1616,7 @@ da:
     max_new_accounts_per_registration_ip: "Hvis der allerede er (n) kontoer med tillidsniveau 0 fra en IP (og ingen er en del af hjælperteamet eller på TL2 eller højere), så accepteres nye kontooprettelser fra denne IP ikke."
     num_flaggers_to_close_topic: "Minimum antal anmeldelser fra unikke brugere, der skal til for automatisk at sætte et emne på pause for ingriben"
     auto_respond_to_flag_actions: "Aktivér automatisk besvarelse, når en anmeldelse fjernes."
+    reviewable_low_priority_threshold: "Prioritetsfilteret skjuler anmeldelser, der ikke opfylder denne score, medmindre filteret '(enhver)' bruges."
     high_trust_flaggers_auto_hide_posts: "Nye brugerindlæg skjules automatisk efter at være blevet anmeldt som spam af en TL3+ bruger"
     cooldown_hours_until_reflag: "Hvor lang tid brugerne skal vente, indtil de kan genanmelde et indlæg"
     reply_by_email_enabled: "Aktivér muligheden for at svare til emner via email."
@@ -1625,6 +1637,7 @@ da:
     blocked_attachment_filenames: "Liste over nøgleord, der bruges til at blokere vedhæftede filer baseret på filavnet."
     forwarded_emails_behaviour: "Sådan behandles en videresendt e-mail til Discourse"
     always_show_trimmed_content: "Vis altid beskåret del af indgående e-mails. ADVARSEL: afslører muligvis e-mail-adresser."
+    trim_incoming_emails: "Beskær en del af de indgående e-mails, der ikke er relevante."
     delete_rejected_email_after_days: "Slet afviste e-mails, der er ældre end (n) dage."
     pop3_polling_enabled: "Hent via POP3 for e-mail svar"
     pop3_polling_ssl: "Brug SSL under tilslutning til POP3-serveren. (Anbefalet)"
@@ -3794,6 +3807,7 @@ da:
       restored: Gendannet
   reviewables:
     already_handled: "Tak, men vi har allerede gennemgået dette indlæg og besluttet, at det ikke behøver at blive anmeldt igen."
+    already_handled_and_user_not_exist: "Tak, men nogen har allerede gennemgået, og den bruger eksisterer ikke længere."
     priorities:
       low: "Lav"
       medium: "Medium"

@@ -368,6 +368,7 @@ en:
     upload: "Upload"
     uploading: "Uploading..."
     uploading_filename: "Uploading: %{filename}..."
+    processing_filename: "Processing: %{filename}..."
     clipboard: "clipboard"
     uploaded: "Uploaded!"
 
@@ -516,7 +517,8 @@ en:
 
         priority:
           title: "Minimum Priority"
-          low: "(any)"
+          any: "(any)"
+          low: "Low"
           medium: "Medium"
           high: "High"
 
@@ -1021,6 +1023,14 @@ en:
       no_messages_body: >
         Need to have a direct personal conversation with someone, outside the normal conversational flow? Message them by selecting their avatar and using the %{icon} message button.<br><br>
         If you need help, you can <a href='%{aboutUrl}'>message a staff member</a>.
+      no_bookmarks_title: "You haven’t bookmarked anything yet"
+      no_bookmarks_body: >
+        Start bookmarking posts with the %{icon} button and they will be listed here for easy reference. You can schedule a reminder too!
+      no_notifications_title: "You don’t have any notifications yet"
+      no_notifications_body: >
+        You will be notified in this panel about activity directly relevant to you, including replies to your topics and posts, when someone <b>@mentions</b> you or quotes you, and replies to topics you are watching. Notifications will also be sent to your email when you haven’t logged in for a while.
+        <br><br>
+        Look for the %{icon} to decide which specific topics, categories and tags you want to be notified about. For more, see your <a href='%{preferencesUrl}'>notification preferences</a>.
       first_notification: "Your first notification! Select it to begin."
       dynamic_favicon: "Show counts on browser icon"
       skip_new_user_tips:
@@ -1259,6 +1269,7 @@ en:
         uploaded_avatar_empty: "Add a custom picture"
         upload_title: "Upload your picture"
         image_is_not_a_square: "Warning: we've cropped your image; width and height were not equal."
+        logo_small: "Site's small logo. Used by default."
 
       change_profile_background:
         title: "Profile Header"
@@ -1505,10 +1516,8 @@ en:
           show_advanced: "Show Advanced Options"
           hide_advanced: "Hide Advanced Options"
 
-          type_link: "Invite one or more people with a link"
-          type_email: "Invite just one email address"
+          restrict_email: "Restrict the invite to one email address"
 
-          email: "Limit to email address:"
           max_redemptions_allowed: "Max number of uses:"
 
           add_to_groups: "Add to groups:"
@@ -2201,14 +2210,15 @@ en:
       from_my_computer: "From my device"
       from_the_web: "From the web"
       remote_tip: "link to image"
-      remote_tip_with_attachments: "link to image or file %{authorized_extensions}"
+      remote_tip_with_attachments: "link to image or file"
       local_tip: "select images from your device"
-      local_tip_with_attachments: "select images or files from your device %{authorized_extensions}"
+      local_tip_with_attachments: "select images or files from your device"
       hint: "(you can also drag & drop into the editor to upload)"
       hint_for_supported_browsers: "you can also drag and drop or paste images into the editor"
       uploading: "Uploading"
       select_file: "Select File"
       default_image_alt_text: image
+      supported_formats: "supported formats"
 
     search:
       sort_by: "Sort by"
@@ -2586,12 +2596,15 @@ en:
         reasons:
           mailing_list_mode: "You have mailing list mode enabled, so you will be notified of replies to this topic via email."
           "3_10": "You will receive notifications because you are watching a tag on this topic."
+          "3_10_stale": "You will receive notifications because you were watching a tag on this topic in the past."
           "3_6": "You will receive notifications because you are watching this category."
+          "3_6_stale": "You will receive notifications because you were watching this category in the past."
           "3_5": "You will receive notifications because you started watching this topic automatically."
           "3_2": "You will receive notifications because you are watching this topic."
           "3_1": "You will receive notifications because you created this topic."
           "3": "You will receive notifications because you are watching this topic."
           "2_8": "You will see a count of new replies because you are tracking this category."
+          "2_8_stale": "You will see a count of new replies because you were tracking this category in the past."
           "2_4": "You will see a count of new replies because you posted a reply to this topic."
           "2_2": "You will see a count of new replies because you are tracking this topic."
           "2": 'You will see a count of new replies because you <a href="%{basePath}/u/%{username}/preferences/notifications">read this topic</a>.'
@@ -2664,6 +2677,15 @@ en:
         title: "Share"
         extended_title: "Share a link"
         help: "share a link to this topic"
+        instructions: "Share a link to this topic:"
+        copied: "Topic link copied."
+        notify_users:
+          title: "Notify"
+          instructions: "Notify the following users about this topic:"
+          success:
+            one: "Successfully notified %{username} about this topic."
+            other: "Successfully notified all users about this topic."
+        invite_users: "Invite"
 
       print:
         title: "Print"
@@ -3356,7 +3378,7 @@ en:
       one: "user"
       other: "users"
     category_title: "Category"
-    history: "History"
+    history: "History, last 100 revisions"
     changed_by: "by %{author}"
 
     raw_email:
@@ -3450,6 +3472,8 @@ en:
       close: "Close (Esc)"
       content_load_error: '<a href="%url%">The content</a> could not be loaded.'
       image_load_error: '<a href="%url%">The image</a> could not be loaded.'
+
+    cannot_render_video: This video cannot be rendered because your browser does not support the codec.
 
     keyboard_shortcuts_help:
       shortcut_key_delimiter_comma: ", "
@@ -4021,6 +4045,9 @@ en:
         group_user_event:
           name: "Group User Event"
           details: "When a user is added or removed in a group."
+        like_event:
+          name: "Like Event"
+          details: "When a user likes a post."
         delivery_status:
           title: "Delivery Status"
           inactive: "Inactive"
@@ -4332,6 +4359,8 @@ en:
           yaml:
             text: "YAML"
             title: "Define theme settings in YAML format"
+          scss_color_variables_warning: "Using core SCSS color variables in themes is deprecated. Please use CSS custom properties instead. See <a href=\"https://meta.discourse.org/t/-/77551#color-variables-2\" target=\"_blank\">this guide</a> for more details."
+          scss_warning_inline: "Using core SCSS color variables in themes is deprecated."
         colors:
           select_base:
             title: "Select base color palette"
@@ -4681,8 +4710,8 @@ en:
           replace: "Replace words in posts with other words or links"
           tag: "Automatically tag topics based on first post"
         form:
-          label: "Has the word"
-          placeholder: "full word or * as wildcard"
+          label: "Has word or phrase"
+          placeholder: "Enter word or phrase (* is a wildcard)"
           placeholder_regexp: "regular expression"
           replacement_label: "Replacement"
           replacement_placeholder: "example or https://example.com"
@@ -4757,7 +4786,7 @@ en:
         suspend_reasons:
           not_listening_to_staff: "Would not listen to staff feedback"
           consuming_staff_time: "Consumed disproportionate amounts of staff time"
-          combatative: "Too combatative"
+          combatative: "Too combative"
           in_wrong_place: "In the wrong place"
           no_constructive_purpose: "No constructive purpose to their actions other than creating dissent within the community"
           custom: "Custom..."
@@ -4990,6 +5019,10 @@ en:
           title: "Show on user card?"
           enabled: "shown on user card"
           disabled: "not shown on user card"
+        searchable:
+          title: "Searchable?"
+          enabled: "searchable"
+          disabled: "not searchable"
 
         field_types:
           text: "Text Field"

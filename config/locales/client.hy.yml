@@ -268,16 +268,6 @@ hy:
       list_permission_denied: "Դուք իրավունք չունեք դիտելու այս օգտատիրոջ էջանշանները: "
       search: "Որոնում"
       reminders:
-        later_today: "Այսօր, մի փոքր ուշ"
-        next_business_day: "Հաջորդ աշխատանքային օրը: "
-        tomorrow: "Վաղը"
-        next_week: "Հաջորդ շաբաթ"
-        later_this_week: "Այս շաբաթ, մի փոքր ավելի ուշ"
-        start_of_next_business_week_alt: "Հաջորդ Երկուշաբթի: "
-        next_month: "Հաջորդ ամիս"
-        custom: "Սահմանել հիշեցումների ամսաթիվն ու ժամանակը:"
-        last_custom: "Օգտագործել ամսաթվի և ժամանակի վերջին գրառումը  "
-        none: "Հիշեցում չսահմանել "
         today_with_time: "այսօր %{time}"
         tomorrow_with_time: "Վաղը %{time}"
         at_time: " %{date_time} -ում"
@@ -287,6 +277,8 @@ hy:
       new_topic: "Նոր թեմայի սևագիր"
       new_private_message: "Նոր անձնական հաղորդագրության սևագիր"
       topic_reply: "Պատասխանի սևագիր"
+      abandon:
+        yes_value: "Չեղարկել"
     topic_count_latest:
       one: "Տեսնել %{count} նոր կամ թարմացված թեման"
       other: "Դիտել %{count} նոր կամ թարմացված թեմաները"
@@ -396,6 +388,12 @@ hy:
         deleted: "[Թեման Ջնջված է]"
         original: "(օրիգինալ թեմա)"
         details: "մանրամասները"
+        unique_users:
+          one: "%{count} օգտատեր"
+          other: "%{count} օգտատեր"
+      replies:
+        one: "%{count} պատասխան"
+        other: "%{count} պատասխան"
       edit: "Խմբագրել"
       save: "Պահպանել"
       cancel: "Չեղարկել"
@@ -415,7 +413,7 @@ hy:
           created_at_asc: "Ստեղծվել է At (հետադարձ տեսակավորում)"
         priority:
           title: "Մինիմալ Գերակայություն"
-          low: "(ցանկացած)"
+          low: "Բարձր"
           medium: "Միջին"
           high: "Կարևոր"
       conversation:
@@ -528,6 +526,8 @@ hy:
           credentials:
             username: "Օգտանուն"
             password: "Գաղտնաբառ"
+          mailboxes:
+            disabled: "անջատված"
         membership:
           title: Անդամակցություն
           access: Թույլտվություն
@@ -682,6 +682,7 @@ hy:
       topic_stat_sentence_month:
         one: "%{count} նոր թեմա անցյալ ամսվա ընթացքում"
         other: "%{count} նոր թեմա անցյալ ամսվա ընթացքում:"
+      n_more: "Կատեգորիաներ (ևս %{count})..."
     ip_lookup:
       title: IP Հասցեի Որոնում
       hostname: Հոսթի անունը
@@ -783,6 +784,7 @@ hy:
       suspended_notice: "Այս օգտատերը սառեցված է մինչև %{date}:"
       suspended_permanently: "Այս օգտատերը սառեցված է"
       suspended_reason: "Պատճառը՝ "
+      github_profile: "GitHub"
       email_activity_summary: "Ակտիվության Ամփոփում"
       mailing_list_mode:
         label: "Փոստային ցուցակի ռեժիմ"
@@ -1108,6 +1110,7 @@ hy:
         time_read: "Կարդացած Ժամանակը"
         days_visited: "Այցելության Օր"
         account_age_days: "Հաշվի տարիքը օրերով"
+        create: "Հրավիրել"
         valid_for: "Հրավերի հղումը վավեր է միայն հետևյալ էլ. հասցեի համար՝ %{email}"
         invite_link:
           success: "Հրավերի հղումը հաջողությամբ գեներացված է!"
@@ -1237,7 +1240,6 @@ hy:
       sign_up: "Գրանցվել"
       hide_session: "Հիշեցնել ինձ վաղը"
       hide_forever: "ոչ, շնորհակալություն"
-      hidden_for_session: "Լավ, ես կհարցնեմ վաղը: Դուք միշտ կարող եք օգտագործել նաև 'Մուտք'-ը հաշիվ ստեղծելու համար:"
       intro: "Ողջույն! Կարծես թե Դուք վայելում եք քննարկումը, սակայն դեռևս հաշիվ չեք գրանցել:"
       value_prop: "Երբ Դուք ստեղծում եք հաշիվ, մենք հստակ հիշում ենք, թե Դուք ինչ եք կադացել, այսպիսով՝ Դուք միշտ վերադառնում եք ճիշտ այնտեղ, որտեղ կանգնել էիք: Դուք նաև ստանում եք ծանուցումներ այստեղ և էլ. փոստով, երբ որևէ մեկը պատասխանում է Ձեզ: Եվ Դուք կարող եք հավանել գրառումներ՝ կիսվելով սիրով: :heartpulse:"
     summary:
@@ -1251,6 +1253,8 @@ hy:
       disable: "Ցուցադրել Հեռացված Գրառումները"
     private_message_info:
       title: "Հաղորդագրություն"
+      invite: "Հրավիրել այլ Մարդկանց..."
+      edit: "Ավելացնել կամ Հեռացնել..."
       leave_message: "Դուք իսկապե՞ս ցանկանում եք թողնել այս հաղորդագրությունը:"
       remove_allowed_user: "Դուք իսկապե՞ս ցանկանում եք հեռացնել %{name}-ը այս հաղորդագրությունից:"
       remove_allowed_group: "Դուք իսկապե՞ս ցանկանում եք հեռացնել %{name}-ը այս հաղորդագրությունից:"
@@ -1359,6 +1363,7 @@ hy:
       accept_invite: "Ընդունել Հրավերը"
       success: "Ձեր հաշիվը ստեղծված է, և այժմ Դուք մուտք եք գործել:"
       name_label: "Անուն"
+      password_label: "Գաղտնաբառ"
       optional_description: "(ընտրովի)"
     password_reset:
       continue: "Շարունակել դեպի %{site_name}"
@@ -1559,6 +1564,10 @@ hy:
       posted: "<span>%{username}</span> %{description}"
       edited: "<span>%{username}</span> %{description}"
       liked: "<span>%{username}</span> %{description}"
+      liked_2: "<span class='double-user'>%{username}, %{username2}</span> %{description}"
+      liked_many:
+        one: "<span class='multi-user'>%{username}, %{username2} and %{count} other</span> %{description}"
+        other: "<span class='multi-user'>%{username}, %{username2} և ևս %{count}-ը</span> %{description}"
       liked_consolidated_description:
         one: "հավանել է Ձեր %{count} գրառում"
         other: "հավանել է Ձեր %{count} գրառումը"
@@ -1617,10 +1626,7 @@ hy:
       from_my_computer: "Իմ սարքից"
       from_the_web: "Համացանցից"
       remote_tip: "նկարի հղումը"
-      remote_tip_with_attachments: "նկարի կամ ֆայլի հղում՝ %{authorized_extensions}"
       local_tip: "ընտրեք նկարներ Ձեր սարքից"
-      local_tip_with_attachments: "ընտրեք նկարներ կամ ֆայլեր Ձեր սարքից՝ %{authorized_extensions}"
-      hint: "(վերբեռնելու համար կարող եք նաև քաշել և գցել խմբագրիչի մեջ)"
       hint_for_supported_browsers: "Դուք կարող եք նաև քաշել և գցել կամ տեղադրել նկարները խմբագրիչի մեջ"
       uploading: "Վերբեռնվում է"
       select_file: "Ընտրել Ֆայլ"
@@ -2499,7 +2505,6 @@ hy:
       one: "օգտատեր"
       other: "օգտատերեր"
     category_title: "Կատեգորիա"
-    history: "Պատմություն"
     changed_by: "%{author}-ի կողմից"
     raw_email:
       title: "Մուտքային Էլ. նամակ"
@@ -3645,7 +3650,6 @@ hy:
           require_approval: "Այս բառերը պարունակող հրապարակումների համար կպահանջվի հաստատում անձնակազմի կողմից՝ մինչև դրանց տեսանելի դառնալը:"
           flag: "Թույլատրել այս բառերը պարունակող գրառումները, սակայն դրոշակավորել դրանք որպես անհամապատասխան, որպեսզի մոդերատորները կարողանան վերանայել դրանք:"
         form:
-          placeholder: "ամբողջական բառը կամ * որպես դերանշան(wildcard)"
           placeholder_regexp: "regular expression"
           add: "Ավելացնել"
           success: "Հաջողություն"

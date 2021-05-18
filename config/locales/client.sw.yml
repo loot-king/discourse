@@ -233,12 +233,6 @@ sw:
       confirm_clear: "Una uhakika unataka kuondoa mialamisho ya mada hii?"
       save: "hifadhi"
       search: "Tafuta"
-      reminders:
-        later_today: "Baada ya mda leo"
-        tomorrow: "Kesho"
-        next_week: "Wiki Ijayo"
-        later_this_week: "Baada ya mda ndani ya wiki hii"
-        next_month: "Mwezi ujao"
     drafts:
       remove: "Ondoa"
       new_topic: "Mswadajaribio wa mada mpya"
@@ -280,6 +274,7 @@ sw:
         total: "Jumla"
       delete: "Futa"
       settings:
+        saved: "Imehifadhiwa"
         save_changes: "Hifadhi Mabadiliko"
         title: "Mpangilio"
       moderation_history: "Historia ya Usimamizi"
@@ -292,6 +287,12 @@ sw:
       topics:
         topic: "Mada"
         details: "maelezo"
+        unique_users:
+          one: "Mtumiaji mmoja"
+          other: "%{count} watumiaji"
+      replies:
+        one: "%{count} jibu"
+        other: "%{count} majibu"
       edit: "Hariri"
       save: "hifadhi"
       cancel: "Ghairi"
@@ -307,6 +308,8 @@ sw:
       statuses:
         pending:
           title: "subiria"
+        approved:
+          title: "Wamekubaliwa"
         rejected:
           title: "Imekataliwa"
       types:
@@ -378,6 +381,8 @@ sw:
           credentials:
             username: "Jina la mtumiaji"
             password: "Nywila"
+          mailboxes:
+            disabled: "imezuiwa"
         membership:
           title: Uanachama
           access: Ufikivu
@@ -597,6 +602,7 @@ sw:
       suspended_notice: "Akaunti imesitishwa mpaka %{tarehe}."
       suspended_permanently: "Mtumiaji amesitishwa."
       suspended_reason: "Sababu:"
+      github_profile: "GitHub"
       email_activity_summary: "Muhtasari wa Shughuli"
       mailing_list_mode:
         label: "Mfumo wa kutuma barua pepe"
@@ -848,6 +854,7 @@ sw:
         time_read: "Mda wa kusoma"
         days_visited: "Siku Iliyotembelewa"
         account_age_days: "Akaunti ina umri wa siku"
+        create: "Mualiko"
         valid_for: "Kiungo cha Mwaliko kitatumiwa na barua pepe hii tu:%{email}"
         invite_link:
           success: "Kiungo cha Mualiko kimetengenezwa kwa mafanikio!"
@@ -975,7 +982,6 @@ sw:
       sign_up: "Jiunge"
       hide_session: "Nikumbushe kesho"
       hide_forever: "hapana asante"
-      hidden_for_session: "OK, Nitakuuliza tena kesho. Unaweza kutumia 'Ingia' kutengeneza akaunti pia."
     summary:
       enabled_description: "Unaangalia muhtasari wa hii mada; machapisho yote yanayovutia yanachaguliwa na jukwaa."
       enable: "Tengeneza Muhtasari wa Hii Mada."
@@ -1075,6 +1081,7 @@ sw:
       accept_invite: "Kubali mwaliko"
       success: "Akaunti yako imetengenezwa na sasa unaweza kuingia."
       name_label: "Jina"
+      password_label: "Nywila"
       optional_description: "(sio muhimu)"
     password_reset:
       continue: "endelea kwenye %{site_name}"
@@ -1245,6 +1252,10 @@ sw:
       posted: "<span>%{jina la mtumiaji} </span> %{maelezo}"
       edited: "<span>%{jina la mtumiaji} </span> %{maelezo}"
       liked: "<span>%{jina la mtumiaji}</span> %{maelezo}"
+      liked_2: "<span class='double-user'>%{username}, %{username2}</span> %{description}"
+      liked_many:
+        one: "<span class='multi-user'>%{username}, %{username2} na %{count} mwingine </span> %{description}"
+        other: "<span class='multi-user'>%{username}, %{username2} na %{count} wengine</span> %{description}"
       liked_consolidated: "<span>%{jina la mtumiaji}</span> %{maelezo}"
       private_message: "<span>%{jina la mtumiaji}</span> %{maelezo}"
       invited_to_private_message: "<p><span>%{jina la mtumiaji}</span> %{maelezo}"
@@ -1277,10 +1288,7 @@ sw:
       from_my_computer: "Kutoka kwenye kifaa changu"
       from_the_web: "Kutoka kwenye mtandao"
       remote_tip: "kiungo cha picha"
-      remote_tip_with_attachments: "kiungo cha picha au faili %{authorized_extensions}"
       local_tip: "chagua picha kwenye kifaa chako"
-      local_tip_with_attachments: "Chagua picha au mafile kutoka kwenye kifaa chako %{authorized_extensions}"
-      hint: "(Unaweza pia kuvuta na kudondosha kwenye kihariri ili kuzipakia)"
       hint_for_supported_browsers: "Unaweza pia kuvuta na kudondosha kwenye kihariri"
       uploading: "Inapakiwa"
       select_file: "Chagua Faili"
@@ -1351,6 +1359,8 @@ sw:
           noreplies: haina majibu
           single_user: ina mtumiaji mmoja
         post:
+          count:
+            label: Machapisho
           time:
             label: Chapishwa
             before: kabla
@@ -1964,7 +1974,6 @@ sw:
       one: "Mtumiaji"
       other: "Watumiaji"
     category_title: "Kategoria"
-    history: "Historia"
     changed_by: "na %{author}"
     raw_email:
       title: "Barua Pepe Iliyopokelewa"
@@ -2784,7 +2793,6 @@ sw:
           require_approval: "Machapicho yenye maneno yafuatayo yatahitaji kibali kutoka kwa wafanyakazi kabla hayajaonwa."
           flag: "Ruhusu machapisho yawe na maneno haya, ila ripoti kuonyesha kuwa hazifai ili wasimamizi waweze kuzikagua."
         form:
-          placeholder: "neno lote au * kama wildcard"
           placeholder_regexp: "muonekano wa kawaida"
           add: "Ongeza"
           success: "Mafanikio"

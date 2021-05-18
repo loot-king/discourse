@@ -256,18 +256,14 @@ ur:
       confirm_clear: "کیا آپ کو یقین ہے کہ آپ اِس ٹاپک سے اپنے تمام بُک مارکس ہٹانا چاہتے ہیں؟"
       save: "محفوظ کریں"
       search: "تلاش کریں"
-      reminders:
-        later_today: "آج بعد میں"
-        tomorrow: "کَل"
-        next_week: "اگلے ہفتے"
-        later_this_week: "اِس ہفتے بعد میں"
-        next_month: "اگلے ماہ"
     drafts:
       resume: "جاری رکھیں"
       remove: "خارج کریں"
       new_topic: "نئے ٹاپک کا ڈرافٹ"
       new_private_message: "نئے ذاتی پیغام کا ڈرافٹ"
       topic_reply: "جواب ڈرافٹ کریں"
+      abandon:
+        yes_value: "منسوخ"
     topic_count_latest:
       one: "%{count} نیا یا اَپ ڈیٹ کردہ ٹاپک دیکھیں۔"
       other: "%{count} نئے یا اَپ ڈیٹ کردہ ٹاپک دیکھیں۔"
@@ -408,7 +404,7 @@ ur:
           created_at_asc: "کو بنایا گیا (ریوَرس)"
         priority:
           title: "کم از کم ترجیح"
-          low: "(کوئی بھی)"
+          low: "کم"
           medium: "درمیانی"
           high: "زیادہ"
       conversation:
@@ -523,6 +519,8 @@ ur:
           credentials:
             username: "صارف کا نام"
             password: "پاسورڈ"
+          mailboxes:
+            disabled: "غیر فعال"
         membership:
           title: ممبرشپ
           access: رسائی
@@ -675,6 +673,7 @@ ur:
       topic_stat_sentence_month:
         one: "%{count} نیا ٹاپک گزشتہ ماہ میں۔"
         other: "%{count} نئے ٹاپک گزشتہ ماہ میں۔"
+      n_more: "زمرہ جات (%{count} مزید)..."
     ip_lookup:
       title: IP ایڈریس کا سراغ
       hostname: ہوسٹ کا نام
@@ -770,6 +769,7 @@ ur:
       suspended_notice: "یہ صارف %{date} تک معطل ہے۔"
       suspended_permanently: "یہ صارف معطل ہے۔"
       suspended_reason: "وجہ:"
+      github_profile: "گِٹ ہَب"
       email_activity_summary: "سرگرمی کا خلاصہ"
       mailing_list_mode:
         label: "میلنگ لسٹ کے موڈ"
@@ -1066,6 +1066,7 @@ ur:
         time_read: "پڑھنے کیلئے اِستعمال ہونے والا وقت"
         days_visited: "دورہ کیے گئے دن"
         account_age_days: "دنوں میں اکاؤنٹ کی عمر"
+        create: "دعوت دیں"
         valid_for: "دعوت لنک صرف اِس اِی میل اِیڈریس کے لئے درست ہے:%{email}"
         invite_link:
           success: "دعوت لنک کامیابی سے بن گیا!"
@@ -1193,7 +1194,6 @@ ur:
       sign_up: "سائن اپ"
       hide_session: "مجھے کل یاد دلائیں"
       hide_forever: "نہیں شکریہ"
-      hidden_for_session: "ٹھیک ہے، میں تم سے کَل پوچھوں گا۔ آپ جب چاہیں، اکاؤنٹ بنانے کے لئے 'لاگ اِن' بھی استعمال کر سکتے ہیں."
       intro: "ہیلو! ایسا لگتا ہے کہ آپ بحث سے لطف اندوز ہو رہے ہیں، لیکن آپ نے اکاؤنٹ کے لئے سائن اَپ نہیں کیا۔"
       value_prop: "جب آپ ایک اکاؤنٹ بناتے ہیں، ہم بالکل یاد رکھتے ہیں کہ آپ نے کیا پڑھا ہے، تاکہ جہاں سے آپ نے پڑھنا چھوڑا ہو بلکل وہاں ہی پر آپ کو ہمیشہ واپس پہنچایا جا سکے۔ جب بھی کوئی آپ کو جواب دیتا ہے، آپ کو یہاں اور اِی میل پر اطلاع بھی دے دی جاتی ہے۔ اور آپ محبت کو بانٹںے کیلئے پوسٹ لائیک کر سکتے ہیں۔ :heartpulse:"
     summary:
@@ -1207,6 +1207,8 @@ ur:
       disable: "حذف شدہ پوسٹس کو ظاہر کریں"
     private_message_info:
       title: "پیغام"
+      invite: "دوسروں کو مدعو کریں..."
+      edit: "شامل کریں یا ہٹائیں..."
       leave_message: "کیا آپ واقعی یہ پیغام بھیجنا چاہتے ہیں؟"
       remove_allowed_user: "کیا آپ واقعی اِس پیغام سے %{name} ہٹانا چاہتے ہیں؟"
       remove_allowed_group: "کیا آپ واقعی اِس پیغام سے %{name} ہٹانا چاہتے ہیں؟"
@@ -1304,6 +1306,7 @@ ur:
       accept_invite: "دعوت قبول کریں"
       success: "آپ کا اکاؤنٹ بنا دیا گیا ہے اور اب آپ لاگ اِن کر سکتے ہیں۔"
       name_label: "نام"
+      password_label: "پاسورڈ"
       optional_description: "(اختیاری)"
     password_reset:
       continue: "%{site_name} پر جاری رکھیں"
@@ -1501,6 +1504,10 @@ ur:
       posted: "<span>%{username}</span> %{description}"
       edited: "<span>%{username}</span> %{description}"
       liked: "<span>%{username}</span> %{description}"
+      liked_2: "<span class='double-user'>%{username}, %{username2}</span> %{description}"
+      liked_many:
+        one: "<span class='multi-user'>%{username2}، %{username} اور %{count} مزید</span> %{description}"
+        other: "<span class='multi-user'>%{username2}، %{username} اور %{count} مزید</span> %{description}"
       liked_consolidated_description:
         one: "آپ کی %{count} پوسٹس کو لائیک کیا"
         other: "آپ کی %{count} پوسٹس کو لائیک کیا"
@@ -1556,10 +1563,7 @@ ur:
       from_my_computer: "میری ڈیوائس سے"
       from_the_web: "انٹرنیٹ سے"
       remote_tip: "تصویر کا لنک"
-      remote_tip_with_attachments: "تصویر یا فائل کا لنک %{authorized_extensions}"
       local_tip: "اپنے ڈیوائس سے تصاویر منتخب کریں"
-      local_tip_with_attachments: "اپنے ڈیوائس سے تصاویر یا فائلیں منتخب کریں %{authorized_extensions}"
-      hint: "(آپ اِن کو اَپ لوڈ کرنے کیلئیے ایڈیٹر میں ڈرَیگ & ڈراپ بھی کر سکتے ہیں)"
       hint_for_supported_browsers: "آپ تصاویر کو ایڈیٹر میں ڈرَیگ & ڈراپ یا پَیسٹ بھی کر سکتے ہیں"
       uploading: "اَپ لوڈ کیا جا رہا ہے"
       select_file: "فائل منتخب کریں"
@@ -1630,6 +1634,8 @@ ur:
           noreplies: کے صفر جوابات ہوں
           single_user: صرف ایک صارف پر مشتمل ہوں
         post:
+          count:
+            label: پوسٹ
           time:
             label: پوسٹ کیا
             before: سے پہلے
@@ -2397,7 +2403,6 @@ ur:
       one: "صارف"
       other: "صارفین"
     category_title: "زمرہ"
-    history: "ہسٹری"
     changed_by: "%{author} کی طرف سے"
     raw_email:
       title: "آنے والی اِیمیل"
@@ -3465,7 +3470,6 @@ ur:
           require_approval: "اِن الفاظ پر مشتمل پوسٹس کے نظر آنے سے پہلے اسٹاف کی طرف سے منظوری کی ضرورت ہوگی۔"
           flag: "اِن الفاظ پر مشتمل پوسٹس کوشائع ہونے دیں، لیکن ان کو غیر مناسب کے طور پر فلَیگ کریں تاکہ منتظمین ان کا جائزہ لے سکیں۔"
         form:
-          placeholder: "مکمل لفظ یا * وائلڈ کارڈ کے طور پر"
           placeholder_regexp: "رَیگولر اَیکسپرَیشَن"
           add: "شامل کریں"
           success: "کامیابی"

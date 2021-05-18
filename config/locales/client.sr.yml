@@ -303,18 +303,6 @@ sr:
       search_placeholder: "Pretraži obeleživače po nazivu, naslovu teme ili sadržaju poruka"
       search: "Pretraži"
       reminders:
-        later_today: "Kasnije ovog dana"
-        next_business_day: "Naredni radni dan"
-        tomorrow: "Sutra"
-        next_week: "Sledeće sedmice"
-        post_local_date: "Datum u poruci"
-        later_this_week: "Kasnije ove sedmice"
-        start_of_next_business_week: "Ponedeljak"
-        start_of_next_business_week_alt: "Naredni ponedeljak"
-        next_month: "Naredni mesec"
-        custom: "Prilagođen datum i vreme"
-        last_custom: "Poslednji"
-        none: "Podsetnik nije potreban"
         today_with_time: "danas u %{time}"
         tomorrow_with_time: "sutra u %{time}"
         at_time: "u %{date_time}"
@@ -409,10 +397,18 @@ sr:
         name: "Ime foruma"
       topics:
         topic: "Tema"
+        reviewable_count: "Broj"
+        details: "detalji"
+        unique_users:
+          one: "{count} korisnik"
+          few: "%{count} korisnika"
+          other: "%{count} korisnika"
       edit: "Izmeni"
       save: "Sačuvaj"
       cancel: "Odustani"
       filters:
+        type:
+          title: "Tip"
         refresh: "Osveži"
         category: "Kategorija"
         priority:
@@ -420,9 +416,14 @@ sr:
           high: "Visoko"
       conversation:
         view_full: "pogledaj ceo razgovor"
+      scores:
+        type: "Tip"
+        reviewed_by: "Pregledano od strane"
       statuses:
         pending:
           title: "U toku"
+        approved:
+          title: "Potvrđenji"
       types:
         reviewable_user:
           title: "Korisnik"
@@ -512,6 +513,10 @@ sr:
         title: "Grupe"
         automatic: "Automatska"
         is_group_user: "Član"
+      title:
+        one: "Grupa"
+        few: "Grupe"
+        other: "Grupe"
       activity: "Aktivnost"
       members:
         title: "Članovi"
@@ -582,6 +587,7 @@ sr:
       topics_entered: "tema posećeno"
       post_count: "# poruka"
       confirm_delete_other_accounts: "Jeste li sigurni da želite obrisati ove naloge?"
+      copied: "kopirano"
     user_fields:
       none: "(izaberi jednu od opcija)"
     user:
@@ -640,6 +646,7 @@ sr:
       users: "Korisnici"
       muted_users: "Utišano"
       tracked_topics_link: "Prikaži"
+      api_approved: "Potvrđenji:"
       staff_counters:
         flags_given: "pomoćne oznake"
         flagged_posts: "označene poruke"
@@ -720,6 +727,7 @@ sr:
         short_instructions: "Ljudi vas mogu spominjati kao @%{username}"
         available: "Vaše korisničko ime slobodno"
         not_available: "Nije dostupno. Pokušajte %{suggestion}?"
+        not_available_no_suggestion: "Nije dostupno"
         too_short: "Vaše korisničko ime prekratko"
         too_long: "Vaše korisničko ime je predugačko"
         checking: "Proveravamo dostupnost korisničkog imena..."
@@ -753,6 +761,8 @@ sr:
         every_30_minutes: "svakih 30 minuta"
         daily: "dnevno"
         weekly: "nedeljno"
+        every_month: "svaki mesec"
+        every_six_months: "svakih šest meseci"
       email_level:
         always: "uvek"
         never: "nikada"
@@ -790,6 +800,7 @@ sr:
         time_read: "Vreme Čitanja"
         days_visited: "Dana posećeno"
         account_age_days: "Starost naloga u danima"
+        create: "Pozovi"
         invite_link:
           success: "Link pozivnice je uspešno kreiran!"
       password:
@@ -869,6 +880,7 @@ sr:
       stream:
         posted_by: "Postavio "
         sent_by: "Poslao"
+        private_message: "privatna poruka"
         the_topic: "tema"
     loading: "Učitavanje..."
     errors:
@@ -903,9 +915,12 @@ sr:
     last_post: Pisao
     time_read: Pročitano
     last_reply_lowercase: poslednji odgovor
+    replies_lowercase:
+      one: odgovori
+      few: odgovori
+      other: odgovori
     signup_cta:
       sign_up: "Registrujte se"
-      hidden_for_session: "OK, pitacu te sutra. Uvek mozes da koristis 'Uloguj se' da kreiras nalog."
     summary:
       enabled_description: "Gledate pregled ove teme: najzanimljivije poruke su odabrane od strane zajednice."
       enable: "Sumirajte Ovu Temu"
@@ -970,6 +985,7 @@ sr:
       welcome_to: "Dobrodošao na %{site_name}!"
       success: "Tvoj nalog je kreiran i sada si ulogovan."
       name_label: "Ime foruma"
+      password_label: "Šifra"
     emoji_set:
       apple_international: "Apple/International"
       google: "Google"
@@ -1052,7 +1068,6 @@ sr:
       from_the_web: "S interneta"
       remote_tip: "link za sliku"
       local_tip: "Izaberite slike sa Vašeg uređaja"
-      hint: "(možete i povući i pustiti datoteke u ovaj prozor da ih učitate)"
       hint_for_supported_browsers: "možete takođe prevući ili nalepiti slike u editor"
       uploading: "Učitavanje"
       default_image_alt_text: slika
@@ -1073,6 +1088,8 @@ sr:
         posted_by:
           label: Postavio
         post:
+          count:
+            label: Poruka
           time:
             label: Pisao
             before: pre
@@ -1173,6 +1190,14 @@ sr:
       jump_reply_up: skoči na raniji odgovor
       jump_reply_down: skoči na kasniji odgovor
       deleted: "Tema je obrisana"
+      topic_status_update:
+        when: "Kada:"
+      auto_update_input:
+        later_today: "Kasnije ovog dana"
+        tomorrow: "Sutra"
+        later_this_week: "Kasnije ove sedmice"
+        next_week: "Sledeće sedmice"
+        next_month: "Naredni mesec"
       auto_close:
         error: "Molimo unesite validnu vrednost"
         based_on_last_post: "Nemoj zatvoriti dok poslednja poruka nije odprilike ovoliko stara."
@@ -1510,7 +1535,6 @@ sr:
     likes: "Lajkova"
     users: "Korisnici"
     category_title: "Kategorija"
-    history: "Istorija"
     changed_by: "od %{author}"
     raw_email:
       not_available: "Nije dostupno!"
