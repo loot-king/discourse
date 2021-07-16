@@ -147,7 +147,7 @@ ca:
       ip_address_already_screened: "ja és inclòs en una regla existent"
       restrict_dependent_destroy:
         one: "No es pot suprimir el registre perquè existeix un %{record} que en depèn."
-        many: "No es pot suprimir el registre perquè existeix %{record} que en depèn."
+        other: "No es pot suprimir el registre perquè existeix %{record} que en depèn."
       too_long:
         one: és massa llarg (el màxim són %{count} caràcter)
         other: és massa llarg (el màxim són %{count} caràcters)
@@ -1290,7 +1290,6 @@ ca:
     markdown_typographer_quotation_marks: "Llista de parelles de reemplaçament de cometes simples i dobles"
     post_undo_action_window_mins: "Nombre de minuts durant els quals es permet als usuaris desfer accions recents sobre una publicació (M'agrada, bandera, etc.)."
     must_approve_users: "L'equip responsable ha d'aprovar tots els comptes d'usuari nous abans que puguin accedir al lloc web."
-    pending_users_reminder_delay: "Notifica als moderadors si hi ha usuaris nous esperant l'aprovació més enllà d'aquest nombre d'hores. -1 per a desactivar les notificacions."
     maximum_session_age: "L'usuari romandrà amb la sessió iniciada durant n hores des de la darrera visita"
     enable_escaped_fragments: "Torna a l'API Ajax-Crawling de Google si no es detecta cap rastrejador web. Consulteu <a href='https://developers.google.com/webmasters/ajax-crawling/docs/learn-more' target='_blank'>https://developers.google.com/webmasters/ajax-crawling/docs/learn-more</a>."
     cors_origins: "Orígens permesos per a peticions d'origen encreuat (CORS). Cada origen ha d'incloure http:// o https://. La variable DISCOURSE_ENABLE_CORS ha de ser \"true\" per a habilitar CORS."
@@ -1364,7 +1363,6 @@ ca:
     discord_client_id: 'Identificador de client Discord (si us en cal un, visiteu <a href="https://discordapp.com/developers/applications/me">el portal de desenvolupadors Discord</a>)'
     discord_secret: "Clau secreta de Discord"
     enable_backups: "Permet als administradors crear còpies de seguretat del fòrum"
-    allow_restore: "Permet restaurar, cosa que pot reemplaçar TOTES les dades del lloc web! Deixeu-ho com a \"fals\" si no preteneu restaurar una còpia de seguretat."
     maximum_backups: "Nombre màxim de còpies de seguretat que es mantenen en el disc. Les còpies més antigues seran suprimides automàticament."
     automatic_backups_enabled: "Executa còpies de seguretat automàtiques tal com són definides en la freqüència de les còpies de seguretat"
     backup_frequency: "Nombre de dies entre còpies de seguretat"
@@ -2676,6 +2674,7 @@ ca:
     sender_body_blank: "el cos és buit"
     sender_post_deleted: "s'ha suprimit la publicació"
     sender_message_to_invalid: "el destinatari té una adreça de correu electrònic no vàlida"
+    group_smtp_post_deleted: "s'ha suprimit la publicació"
   color_schemes:
     base_theme_name: "Base"
     light: "Clar"

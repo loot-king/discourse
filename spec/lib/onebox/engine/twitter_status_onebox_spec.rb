@@ -59,7 +59,7 @@ describe Onebox::Engine::TwitterStatusOnebox do
 
   shared_context "quoted tweet info" do
     before do
-      @link = "https://twitter.com/Metallica/status/1128068672289890305"
+      @link = "https://twitter.com/metallica/status/1128068672289890305"
       @onebox_fixture = "twitterstatus_quoted"
 
       stub_request(:get, @link.downcase).to_return(status: 200, body: onebox_response(@onebox_fixture))
@@ -72,6 +72,23 @@ describe Onebox::Engine::TwitterStatusOnebox do
     let(:link) { @link }
     let(:favorite_count) { "1.7K" }
     let(:retweets_count) { "201" }
+  end
+
+  shared_context "featured image info" do
+    before do
+      @link = "https://twitter.com/codinghorror/status/1409351083177046020"
+      @onebox_fixture = "twitterstatus_featured_image"
+
+      stub_request(:get, @link.downcase).to_return(status: 200, body: onebox_response(@onebox_fixture))
+    end
+
+    let(:full_name) { "Jeff Atwood" }
+    let(:screen_name) { "codinghorror" }
+    let(:avatar) { "" }
+    let(:timestamp) { "3:02 PM - 27 Jun 2021" }
+    let(:link) { @link }
+    let(:favorite_count) { "90" }
+    let(:retweets_count) { "0" }
   end
 
   shared_examples "includes quoted tweet data" do
@@ -114,6 +131,18 @@ describe Onebox::Engine::TwitterStatusOnebox do
       it_behaves_like "an engine"
       it_behaves_like '#to_html'
       it_behaves_like "includes quoted tweet data"
+    end
+
+    context "with a featured image tweet" do
+      let(:tweet_content) do
+        "My first text message from my child! A moment that shall live on in infamy!"
+      end
+
+      include_context "featured image info"
+      include_context "engines"
+
+      it_behaves_like "an engine"
+      it_behaves_like '#to_html'
     end
   end
 

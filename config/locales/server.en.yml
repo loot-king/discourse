@@ -175,7 +175,7 @@ en:
       ip_address_already_screened: "is already included in an existing rule"
       restrict_dependent_destroy:
         one: "Cannot delete record because a dependent %{record} exists"
-        many: "Cannot delete record because dependent %{record} exist"
+        other: "Cannot delete record because dependent %{record} exist"
       too_long:
         one: is too long (maximum is %{count} character)
         other: is too long (maximum is %{count} characters)
@@ -254,6 +254,7 @@ en:
     disabled_errors:
       discourse_connect_enabled: "Invites are disabled because DiscourseConnect is enabled."
       invalid_access: "You are not permitted to view the requested resource."
+    requires_groups: "Invite saved. To give access to the specified topic, add one of the following groups: %{groups}."
 
   bulk_invite:
     file_should_be_csv: "The uploaded file should be of csv format."
@@ -1458,7 +1459,7 @@ en:
     force_https_warning: "Your website is using SSL. But `<a href='%{base_path}/admin/site_settings/category/all_results?filter=force_https'>force_https</a>` is not yet enabled in your site settings."
     out_of_date_themes: "Updates are available for the following themes:"
     unreachable_themes: "We were unable to check for updates on the following themes:"
-    watched_word_regexp_error: "The regular expression for %{action} watched words is invalid. Please check your <a href='%{base_path}/admin/customize/watched_words'>Watched Word settings</a>, or disable the 'watched words regular expressions' site setting."
+    watched_word_regexp_error: "The regular expression for '%{action}' watched words is invalid. Please check your <a href='%{base_path}/admin/customize/watched_words'>Watched Word settings</a>, or disable the 'watched words regular expressions' site setting."
 
   site_settings:
     display_local_time_in_user_card: "Display the local time based on a user's timezone when their user card is opened."
@@ -1491,7 +1492,7 @@ en:
     category_search_priority_high_weight: "Weight applied to ranking for high category search priority."
     allow_uncategorized_topics: "Allow topics to be created without a category. WARNING: If there are any uncategorized topics, you must recategorize them before turning this off."
     allow_duplicate_topic_titles: "Allow topics with identical, duplicate titles."
-    allow_duplicate_topic_titles_category: "Allow topics with identical, duplicate titles if the category is different. allow_duplicate_topic_titles must be false."
+    allow_duplicate_topic_titles_category: "Allow topics with identical, duplicate titles if the category is different. allow_duplicate_topic_titles must be disabled."
     unique_posts_mins: "How many minutes before a user can make a post with the same content again"
     educate_until_posts: "When the user starts typing their first (n) new posts, show the pop-up new user education panel in the composer."
     title: "The name of this site, as used in the title tag."
@@ -1611,6 +1612,7 @@ en:
     gtm_container_id: "Google Tag Manager container id. eg: GTM-ABCDEF. <br/>Note: Third-party scripts loaded by GTM may need to be allowlisted in 'content security policy script src'."
     enable_escaped_fragments: "Fall back to Google's Ajax-Crawling API if no webcrawler is detected. See <a href='https://developers.google.com/webmasters/ajax-crawling/docs/learn-more' target='_blank'>https://developers.google.com/webmasters/ajax-crawling/docs/learn-more</a>"
     moderators_manage_categories_and_groups: "Allow moderators to manage categories and groups"
+    moderators_change_post_ownership: "Allow moderators to change post ownership"
     cors_origins: "Allowed origins for cross-origin requests (CORS). Each origin must include http:// or https://. The DISCOURSE_ENABLE_CORS env variable must be set to true to enable CORS."
     use_admin_ip_allowlist: "Admins can only log in if they are at an IP address defined in the Screened IPs list (Admin > Logs > Screened Ips)."
     blocked_ip_blocks: "A list of private IP blocks that should never be crawled by Discourse"
@@ -1697,11 +1699,11 @@ en:
     auth_overrides_email: "Overrides local email with external site email on every login, and prevent local changes. Applies to all authentication providers. (WARNING: discrepancies can occur due to normalization of local emails)"
     auth_overrides_username: "Overrides local username with external site username on every login, and prevent local changes.  Applies to all authentication providers. (WARNING: discrepancies can occur due to differences in username length/requirements)"
     auth_overrides_name: "Overrides local full name with external site full name on every login, and prevent local changes.  Applies to all authentication providers."
-    discourse_connect_overrides_avatar: "Overrides user avatar with external site avatar from DiscourseConnect payload. If enabled, users will not be allowed to upload avatars on Discourse."
-    discourse_connect_overrides_location: "Overrides user location with external location from DiscourseConnect payload and prevent local changes."
-    discourse_connect_overrides_website: "Overrides user website with external location from DiscourseConnect payload and prevent local changes."
-    discourse_connect_overrides_profile_background: "Overrides user profile background with external site avatar from DiscourseConnect payload."
-    discourse_connect_overrides_card_background: "Overrides user card background with external site avatar from DiscourseConnect payload."
+    discourse_connect_overrides_avatar: "Overrides user avatar with value from DiscourseConnect payload. If enabled, users will not be allowed to upload avatars on Discourse."
+    discourse_connect_overrides_location: "Overrides user location with value from DiscourseConnect payload and prevent local changes."
+    discourse_connect_overrides_website: "Overrides user website with value from DiscourseConnect payload and prevent local changes."
+    discourse_connect_overrides_profile_background: "Overrides user profile background with value from DiscourseConnect payload."
+    discourse_connect_overrides_card_background: "Overrides user card background with value from DiscourseConnect payload."
     discourse_connect_not_approved_url: "Redirect unapproved DiscourseConnect accounts to this URL"
     discourse_connect_allows_all_return_paths: "Do not restrict the domain for return_paths provided by DiscourseConnect (by default return path must be on current site)"
 
@@ -1734,7 +1736,7 @@ en:
     discord_trusted_guilds: 'Only allow members of these Discord guilds to log in via Discord. Use the numeric ID for the guild. For more information, check the instructions <a href="https://meta.discourse.org/t/configuring-discord-login-for-discourse/127129">here</a>. Leave blank to allow any guild.'
 
     enable_backups: "Allow administrators to create backups of the forum"
-    allow_restore: "Allow restore, which can replace ALL site data! Leave false unless you plan to restore a backup"
+    allow_restore: "Allow restore, which can replace ALL site data! Leave disabled unless you plan to restore a backup"
     maximum_backups: "The maximum amount of backups to keep on disk. Older backups are automatically deleted"
     automatic_backups_enabled: "Run automatic backups as defined in backup frequency"
     backup_frequency: "The number of days between backups."
@@ -1825,7 +1827,7 @@ en:
     strip_image_metadata: "Strip image metadata."
 
     composer_media_optimization_image_enabled: "Enables client-side media optimization of uploaded image files."
-    composer_media_optimization_image_kilobytes_optimization_threshold: "Minimum image file size to trigger client-side optimization"
+    composer_media_optimization_image_bytes_optimization_threshold: "Minimum image file size to trigger client-side optimization"
     composer_media_optimization_image_resize_dimensions_threshold: "Minimum image width to trigger client-side resize"
     composer_media_optimization_image_resize_width_target: "Images with widths larger than `composer_media_optimization_image_dimensions_resize_threshold` will be resized to this width. Must be >= than `composer_media_optimization_image_dimensions_resize_threshold`."
     composer_media_optimization_image_encode_quality: "JPEG encode quality used in the re-encode process."
@@ -1980,6 +1982,7 @@ en:
     reviewable_low_priority_threshold: "The priority filter hides reviewable items that don't meet this score unless the '(any)' filter is used."
     high_trust_flaggers_auto_hide_posts: "New user posts are automatically hidden after being flagged as spam by a TL3+ user"
     cooldown_hours_until_reflag: "How much time users will have to wait until they are able to reflag a post"
+    slow_mode_prevents_editing: "Does 'Slow Mode' prevent editing, after editing_grace_period?"
 
     reply_by_email_enabled: "Enable replying to topics via email."
     reply_by_email_address: "Template for reply by email incoming email address, for example: %%{reply_key}@reply.example.com or replies+%%{reply_key}@example.com"
@@ -2158,6 +2161,7 @@ en:
     share_anonymized_statistics: "Share anonymized usage statistics."
 
     auto_handle_queued_age: "Automatically handle records that are waiting to be reviewed after this many days. Flags will be ignored. Queued posts and users will be rejected. Set to 0 to disable this feature."
+    penalty_step_hours: "Default penalties for silencing or suspending users in hours. First offense defaults to the first value, second offense defaults to the second value, etc."
     svg_icon_subset: "Add additional FontAwesome 5 icons that you would like to include in your assets. Use prefix 'fa-' for solid icons, 'far-' for regular icons and 'fab-' for brand icons."
     max_prints_per_hour_per_user: "Maximum number of /print page impressions (set to 0 to disable)"
 
@@ -2321,6 +2325,8 @@ en:
     share_quote_visibility: "Determine when to show quote sharing buttons: never, to anonymous users only or all users. "
 
     create_revision_on_bulk_topic_moves: "Create revision for first posts when topics are moved into a new category in bulk."
+
+    allow_changing_staged_user_tracking: "Allow a staged user's category and tag notification preferences to be changed by an admin user."
 
     errors:
       invalid_email: "Invalid email address."
@@ -3471,6 +3477,7 @@ en:
     only_reply_by_email_pm: "Reply to this email to respond to %{participants}."
     visit_link_to_respond: "[Visit Topic](%{base_url}%{url}) to respond."
     visit_link_to_respond_pm: "[Visit Message](%{base_url}%{url}) to respond to %{participants}."
+    reply_above_line: "## Please type your reply above this line. ##"
 
     posted_by: "Posted by %{username} on %{post_date}"
 
@@ -4041,6 +4048,9 @@ en:
     sender_post_deleted: "post has been deleted"
     sender_message_to_invalid: "recipient has invalid email address"
     sender_topic_deleted: "topic has been deleted"
+    group_smtp_post_deleted: "post has been deleted"
+    group_smtp_topic_deleted: "topic has been deleted"
+    group_smtp_disabled_for_group: "smtp has been disabled for the group"
 
   color_schemes:
     base_theme_name: "Base"
@@ -4441,7 +4451,9 @@ en:
     mass_award:
       errors:
         invalid_csv: We encountered an error on line %{line_number}. Please confirm the CSV has one email per line.
+        too_many_csv_entries: Too many entries in the CSV file. Please provide a CSV file with no more than %{count} entries.
         badge_disabled: Please enable the %{badge_name} badge first.
+        cant_grant_multiple_times: Can't grant the %{badge_name} badge multiple times to a single user.
     editor:
       name: Editor
       description: First post edit

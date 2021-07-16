@@ -29,7 +29,9 @@ const SiteHeaderComponent = MountWidget.extend(
     @observes(
       "currentUser.unread_notifications",
       "currentUser.unread_high_priority_notifications",
-      "currentUser.reviewable_count"
+      "currentUser.reviewable_count",
+      "session.defaultColorSchemeIsDark",
+      "session.darkModeAvailable"
     )
     notificationsChanged() {
       this.queueRerender();
@@ -216,7 +218,6 @@ const SiteHeaderComponent = MountWidget.extend(
 
       this.dispatch("notifications:changed", "user-notifications");
       this.dispatch("header:keyboard-trigger", "header");
-      this.dispatch("search-autocomplete:after-complete", "search-term");
       this.dispatch("user-menu:navigation", "user-menu");
 
       this.appEvents.on("dom:clean", this, "_cleanDom");

@@ -20,7 +20,7 @@ describe Stylesheet::Manager do
   end
 
   context "themes with components" do
-    let(:child_theme) { Fabricate(:theme, component: true).tap { |c|
+    let(:child_theme) { Fabricate(:theme, component: true, name: "a component").tap { |c|
       c.set_field(target: :common, name: "scss", value: ".child_common{.scss{color: red;}}")
       c.set_field(target: :desktop, name: "scss", value: ".child_desktop{.scss{color: red;}}")
       c.set_field(target: :mobile, name: "scss", value: ".child_mobile{.scss{color: red;}}")
@@ -39,7 +39,7 @@ describe Stylesheet::Manager do
     }}
 
     it "generates the right links for non-theme targets" do
-      manager = manager(theme.id)
+      manager = manager(nil)
 
       hrefs = manager.stylesheet_details(:desktop, 'all')
 
@@ -135,6 +135,75 @@ describe Stylesheet::Manager do
       )
     end
 
+    context "stylesheet order" do
+      let(:z_child_theme) do
+        Fabricate(:theme, component: true, name: "ze component").tap do |z|
+          z.set_field(target: :desktop, name: "scss", value: ".child_desktop{.scss{color: red;}}")
+          z.save!
+        end
+      end
+
+      let(:remote) { RemoteTheme.create!(remote_url: "https://github.com/org/remote-theme1") }
+
+      let(:child_remote) do
+        Fabricate(:theme, remote_theme: remote, component: true).tap do |t|
+          t.set_field(target: :desktop, name: "scss", value: ".child_desktop{.scss{color: red;}}")
+          t.save!
+        end
+      end
+
+      before do
+        SiteSetting.order_stylesheets = true
+      end
+
+      it 'output remote child, then sort children alphabetically, then local parent' do
+        theme.add_relative_theme!(:child, z_child_theme)
+        theme.add_relative_theme!(:child, child_remote)
+
+        manager = manager(theme.id)
+        hrefs = manager.stylesheet_details(:desktop_theme, 'all')
+
+        parent = hrefs.select { |href| href[:theme_id] == theme.id }.first
+        child_a = hrefs.select { |href| href[:theme_id] == child_theme.id }.first
+        child_z = hrefs.select { |href| href[:theme_id] == z_child_theme.id }.first
+        child_r = hrefs.select { |href| href[:theme_id] == child_remote.id }.first
+
+        child_local_A = "<link href=\"#{child_a[:new_href]}\" data-theme-id=\"#{child_a[:theme_id]}\" data-theme-name=\"#{child_a[:theme_name]}\"/>"
+        child_local_Z = "<link href=\"#{child_z[:new_href]}\" data-theme-id=\"#{child_z[:theme_id]}\" data-theme-name=\"#{child_z[:theme_name]}\"/>"
+        child_remote_R = "<link href=\"#{child_r[:new_href]}\" data-theme-id=\"#{child_r[:theme_id]}\" data-theme-name=\"#{child_r[:theme_name]}\"/>"
+        parent_local = "<link href=\"#{parent[:new_href]}\" data-theme-id=\"#{parent[:theme_id]}\" data-theme-name=\"#{parent[:theme_name]}\"/>"
+
+        link_hrefs = manager.stylesheet_link_tag(:desktop_theme).gsub('media="all" rel="stylesheet" data-target="desktop_theme" ', '')
+
+        expect(link_hrefs).to eq([child_remote_R, child_local_A, child_local_Z, parent_local].join("\n").html_safe)
+      end
+
+      it "output remote child, remote parent, local child" do
+        remote2 = RemoteTheme.create!(remote_url: "https://github.com/org/remote-theme2")
+        remote_main_theme = Fabricate(:theme, remote_theme: remote2, name: "remote main").tap do |t|
+          t.set_field(target: :desktop, name: "scss", value: ".el{color: red;}")
+          t.save!
+        end
+
+        remote_main_theme.add_relative_theme!(:child, z_child_theme)
+        remote_main_theme.add_relative_theme!(:child, child_remote)
+
+        manager = manager(remote_main_theme.id)
+        hrefs = manager.stylesheet_details(:desktop_theme, 'all')
+
+        parent_r = hrefs.select { |href| href[:theme_id] == remote_main_theme.id }.first
+        child_z = hrefs.select { |href| href[:theme_id] == z_child_theme.id }.first
+        child_r = hrefs.select { |href| href[:theme_id] == child_remote.id }.first
+
+        parent_remote = "<link href=\"#{parent_r[:new_href]}\" data-theme-id=\"#{parent_r[:theme_id]}\" data-theme-name=\"#{parent_r[:theme_name]}\"/>"
+        child_local = "<link href=\"#{child_z[:new_href]}\" data-theme-id=\"#{child_z[:theme_id]}\" data-theme-name=\"#{child_z[:theme_name]}\"/>"
+        child_remote = "<link href=\"#{child_r[:new_href]}\" data-theme-id=\"#{child_r[:theme_id]}\" data-theme-name=\"#{child_r[:theme_name]}\"/>"
+
+        link_hrefs = manager.stylesheet_link_tag(:desktop_theme).gsub('media="all" rel="stylesheet" data-target="desktop_theme" ', '')
+        expect(link_hrefs).to eq([child_remote, parent_remote, child_local].join("\n").html_safe)
+      end
+    end
+
     it 'outputs tags for non-theme targets for theme component' do
       child_theme = Fabricate(:theme, component: true)
 
@@ -188,22 +257,12 @@ describe Stylesheet::Manager do
       DiscoursePluginRegistry.reset!
     end
 
-    it 'can correctly account for plugins in digest' do
-      theme = Fabricate(:theme)
-      manager = manager(theme.id)
-
-      builder = Stylesheet::Manager::Builder.new(
-        target: :desktop_theme, theme: theme, manager: manager
-      )
-
+    it 'can correctly account for plugins in default digest' do
+      builder = Stylesheet::Manager::Builder.new(target: :desktop, manager: manager)
       digest1 = builder.digest
 
       DiscoursePluginRegistry.stylesheets["fake"] = Set.new(["fake_file"])
-
-      builder = Stylesheet::Manager::Builder.new(
-        target: :desktop_theme, theme: theme, manager: manager
-      )
-
+      builder = Stylesheet::Manager::Builder.new(target: :desktop, manager: manager)
       digest2 = builder.digest
 
       expect(digest1).not_to eq(digest2)
@@ -281,6 +340,21 @@ describe Stylesheet::Manager do
       digest2 = builder.digest
 
       expect(digest1).not_to eq(digest2)
+    end
+
+    it 'returns different digest based on target' do
+      theme = Fabricate(:theme)
+      builder = Stylesheet::Manager::Builder.new(target: :desktop_theme, theme: theme, manager: manager)
+      expect(builder.digest).to eq(builder.theme_digest)
+
+      builder = Stylesheet::Manager::Builder.new(target: :color_definitions, manager: manager)
+      expect(builder.digest).to eq(builder.color_scheme_digest)
+
+      builder = Stylesheet::Manager::Builder.new(target: :admin, manager: manager)
+      expect(builder.digest).to eq(builder.default_digest)
+
+      builder = Stylesheet::Manager::Builder.new(target: :desktop, manager: manager)
+      expect(builder.digest).to eq(builder.default_digest)
     end
   end
 
@@ -497,6 +571,15 @@ describe Stylesheet::Manager do
       expect(stylesheet2).to include("--primary: #c00;")
     end
 
+    it "includes updated font definitions" do
+      details1 = manager.color_scheme_stylesheet_details(nil, "all")
+
+      SiteSetting.base_font = DiscourseFonts.fonts[2][:key]
+
+      details2 = manager.color_scheme_stylesheet_details(nil, "all")
+      expect(details1[:new_href]).not_to eq(details2[:new_href])
+    end
+
     context "theme colors" do
       let(:theme) { Fabricate(:theme).tap { |t|
         t.set_field(target: :common, name: "color_definitions", value: ':root {--special: rebeccapurple;}')
@@ -602,8 +685,7 @@ describe Stylesheet::Manager do
     end
   end
 
-  # this test takes too long, we don't run it by default
-  describe ".precompile_css", if: ENV["RUN_LONG_TESTS"] == "1" do
+  describe ".precompile css" do
     before do
       class << STDERR
         alias_method :orig_write, :write
@@ -626,7 +708,6 @@ describe Stylesheet::Manager do
       scheme2 = ColorScheme.create!(name: "scheme2")
       core_targets = [:desktop, :mobile, :desktop_rtl, :mobile_rtl, :admin, :wizard]
       theme_targets = [:desktop_theme, :mobile_theme]
-      color_scheme_targets = ["color_definitions_scheme1_#{scheme1.id}", "color_definitions_scheme2_#{scheme2.id}"]
 
       Theme.update_all(user_selectable: false)
       user_theme = Fabricate(:theme, user_selectable: true, color_scheme: scheme1)
@@ -650,20 +731,37 @@ describe Stylesheet::Manager do
         t.save!
 
         user_theme.add_relative_theme!(:child, t)
+        default_theme.add_relative_theme!(:child, t)
       end
 
       default_theme.set_default!
 
       StylesheetCache.destroy_all
 
+      # only core
+      output = capture_output(:stderr) do
+        Stylesheet::Manager.precompile_css
+      end
+
+      results = StylesheetCache.pluck(:target)
+      expect(results.size).to eq(core_targets.size)
+
+      StylesheetCache.destroy_all
+
+      # only themes
+      output = capture_output(:stderr) do
+        Stylesheet::Manager.precompile_theme_css
+      end
+
+      # Ensure we force compile each theme only once
+      expect(output.scan(/#{child_theme_with_css.name}/).length).to eq(2)
+      results = StylesheetCache.pluck(:target)
+      expect(results.size).to eq(16) # (3 themes * 2 targets) + 10 color schemes (2 themes * 5 color schemes (4 defaults + 1 theme scheme))
+
+      # themes + core
       Stylesheet::Manager.precompile_css
       results = StylesheetCache.pluck(:target)
-
-      expect(results.size).to eq(24) # (2 themes x 8 targets) + (1 child Theme x 2 targets) + 6 color schemes (2 custom theme schemes, 4 base schemes)
-
-      core_targets.each do |tar|
-        expect(results.count { |target| target =~ /^#{tar}_(#{scheme1.id}|#{scheme2.id})$/ }).to eq(2)
-      end
+      expect(results.size).to eq(22) # 6 core targets + 6 theme + 10 color schemes
 
       theme_targets.each do |tar|
         expect(results.count { |target| target =~ /^#{tar}_(#{user_theme.id}|#{default_theme.id})$/ }).to eq(2)
@@ -672,21 +770,14 @@ describe Stylesheet::Manager do
       Theme.clear_default!
       StylesheetCache.destroy_all
 
+      # themes + core with no theme set as default
       Stylesheet::Manager.precompile_css
+      Stylesheet::Manager.precompile_theme_css
       results = StylesheetCache.pluck(:target)
+      expect(results.size).to eq(22) # 6 core targets + 6 theme + 10 color schemes
 
-      expect(results.size).to eq(30) # (2 themes x 8 targets) + (1 child Theme x 2 targets) + (1 no/default/core theme x 6 core targets) + 6 color schemes (2 custom theme schemes, 4 base schemes)
-
-      core_targets.each do |tar|
-        expect(results.count { |target| target =~ /^(#{tar}_(#{scheme1.id}|#{scheme2.id})|#{tar})$/ }).to eq(3)
-      end
-
-      theme_targets.each do |tar|
-        expect(results.count { |target| target =~ /^#{tar}_(#{user_theme.id}|#{default_theme.id})$/ }).to eq(2)
-      end
-
-      expect(results).to include(color_scheme_targets[0])
-      expect(results).to include(color_scheme_targets[1])
+      expect(results).to include("color_definitions_#{scheme1.name}_#{scheme1.id}_#{user_theme.id}")
+      expect(results).to include("color_definitions_#{scheme2.name}_#{scheme2.id}_#{default_theme.id}")
     end
   end
 end

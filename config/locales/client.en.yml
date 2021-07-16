@@ -53,6 +53,7 @@ en:
       long_date_with_year_with_linebreak: "MMM D, 'YY <br/>LT"
 
       wrap_ago: "%{date} ago"
+      wrap_on: "on %{date}"
 
       tiny:
         half_a_minute: "< 1m"
@@ -224,7 +225,6 @@ en:
     submit: "Submit"
     generic_error: "Sorry, an error has occurred."
     generic_error_with_reason: "An error occurred: %{error}"
-    go_ahead: "Go ahead"
     sign_up: "Sign Up"
     log_in: "Log In"
     age: "Age"
@@ -253,7 +253,6 @@ en:
     x_more:
       one: "%{count} More"
       other: "%{count} More"
-    less: "Less"
     never: "never"
     every_30_minutes: "every 30 minutes"
     every_hour: "every hour"
@@ -262,7 +261,6 @@ en:
     every_month: "every month"
     every_six_months: "every six months"
     max_of_count: "max of %{count}"
-    alternation: "or"
     character_count:
       one: "%{count} character"
       other: "%{count} characters"
@@ -301,8 +299,9 @@ en:
       clear_bookmarks: "Clear Bookmarks"
       help:
         bookmark: "Click to bookmark the first post on this topic"
+        edit_bookmark: "Click to edit the bookmark on this topic"
         unbookmark: "Click to remove all bookmarks in this topic"
-        unbookmark_with_reminder: "Click to remove all bookmarks and reminders in this topic. You have a reminder set %{reminder_at} for this topic."
+        unbookmark_with_reminder: "Click to remove all bookmarks and reminders in this topic."
 
     bookmarks:
       created: "You've bookmarked this post. %{name}"
@@ -338,7 +337,7 @@ en:
       remove: "Remove"
       remove_confirmation: "Are you sure you want to delete this draft?"
       new_topic: "New topic draft"
-      new_private_message: "New private message draft"
+      new_private_message: "New personal message draft"
       topic_reply: "Draft reply"
       abandon:
         confirm: "You have a draft in progress for this topic. What would you like to do with it?"
@@ -427,7 +426,7 @@ en:
         type_bonus:
           name: "type bonus"
           title: "Certain reviewable types can be assigned a bonus by staff to make them a higher priority."
-      stale_help: "This reviewable has been resolved by someone else."
+      stale_help: "This reviewable has been resolved by <b>%{username}</b>."
       claim_help:
         optional: "You can claim this item to prevent others from reviewing it."
         required: "You must claim items before you can review them."
@@ -670,6 +669,8 @@ en:
       add_members:
         title: "Add Users to %{group_name}"
         description: "Enter a list of users you want to invite to the group or paste in a comma separated list:"
+        usernames_placeholder: "usernames"
+        usernames_or_emails_placeholder: "usernames or emails"
         notify_users: "Notify users"
         set_owner: "Set users as owners of this group"
       requests:
@@ -891,6 +892,11 @@ en:
       flair_type:
         icon: "Select an icon"
         image: "Upload an image"
+      default_notifications:
+        modal_title: "User default notifications"
+        modal_description: "Would you like to apply this change historically? This will change preferences for %{count} existing users."
+        modal_yes: "Yes"
+        modal_no: "No, only apply change going forward"
 
     user_action_groups:
       "1": "Likes"
@@ -1172,11 +1178,9 @@ en:
         sent: "Sent"
         archive: "Archive"
         groups: "My Groups"
-        bulk_select: "Select messages"
         move_to_inbox: "Move to Inbox"
         move_to_archive: "Archive"
         failed_to_move: "Failed to move selected messages (perhaps your network is down)"
-        select_all: "Select All"
         tags: "Tags"
         warnings: "Official Warnings"
 
@@ -1648,6 +1652,11 @@ en:
       title:
         title: "Title"
         none: "(none)"
+        instructions: "appears after your username"
+      flair:
+        title: "Flair"
+        none: "(none)"
+        instructions: "icon displayed next to your profile picture"
       primary_group:
         title: "Primary Group"
         none: "(none)"
@@ -2123,7 +2132,7 @@ en:
           confirm: You have a new topic draft saved, which will be overwritten if you create a linked topic.
         reply_as_new_group_message:
           label: Reply as new group message
-          desc: Create a new private message with the same recipients
+          desc: Create new message starting with same recipients
         reply_as_private_message:
           label: New message
           desc: Create a new personal message
@@ -2238,20 +2247,10 @@ en:
         votes_released: "Vote was released"
 
     upload_selector:
-      title: "Add an image"
-      title_with_attachments: "Add an image or a file"
-      from_my_computer: "From my device"
-      from_the_web: "From the web"
-      remote_tip: "link to image"
-      remote_tip_with_attachments: "link to image or file"
-      local_tip: "select images from your device"
-      local_tip_with_attachments: "select images or files from your device"
-      hint: "(you can also drag & drop into the editor to upload)"
-      hint_for_supported_browsers: "you can also drag and drop or paste images into the editor"
       uploading: "Uploading"
+      processing: "Processing Upload"
       select_file: "Select File"
       default_image_alt_text: image
-      supported_formats: "supported formats"
 
     search:
       sort_by: "Sort by"
@@ -2409,7 +2408,7 @@ en:
         top: "There are no top topics."
         educate:
           new: '<p>Your new topics will appear here. By default, topics are considered new and will show a <span class="badge new-topic badge-notification" style="vertical-align:middle;line-height:inherit;"></span> indicator if they were created in the last 2 days.</p><p>Visit your <a href="%{userPrefsUrl}">preferences</a> to change this.</p>'
-          unread: '<p>Your unread topics appear here.</p><p>By default, topics are considered unread and will show unread counts <span class="badge new-posts badge-notification">1</span> if you:</p><ul><li>Created the topic</li><li>Replied to the topic</li><li>Read the topic for more than 4 minutes</li></ul><p>Or if you have explicitly set the topic to Tracked or Watched via the 🔔 in each topic.</p><p>Visit your <a href="%{userPrefsUrl}">preferences</a> to change this.</p>'
+          unread: '<p>Your unread topics appear here.</p><p>By default, topics are considered unread and will show unread counts <span class="badge unread-posts badge-notification">1</span> if you:</p><ul><li>Created the topic</li><li>Replied to the topic</li><li>Read the topic for more than 4 minutes</li></ul><p>Or if you have explicitly set the topic to Tracked or Watched via the 🔔 in each topic.</p><p>Visit your <a href="%{userPrefsUrl}">preferences</a> to change this.</p>'
       bottom:
         latest: "There are no more latest topics."
         posted: "There are no more posted topics."
@@ -2469,15 +2468,9 @@ en:
       not_found:
         title: "Topic not found"
         description: "Sorry, we couldn't find that topic. Perhaps it was removed by a moderator?"
-      total_unread_posts:
+      unread_posts:
         one: "you have %{count} unread post in this topic"
         other: "you have %{count} unread posts in this topic"
-      unread_posts:
-        one: "you have %{count} unread old post in this topic"
-        other: "you have %{count} unread old posts in this topic"
-      new_posts:
-        one: "there is %{count} new post in this topic since you last read it"
-        other: "there are %{count} new posts in this topic since you last read it"
       likes:
         one: "there is %{count} like in this topic"
         other: "there are %{count} likes in this topic"
@@ -2576,7 +2569,7 @@ en:
       temp_open:
         title: "Open Temporarily"
       auto_reopen:
-        title: "Auto-open Topic"
+        title: "Auto-Open Topic"
       temp_close:
         title: "Close Temporarily"
       auto_close:
@@ -2705,16 +2698,12 @@ en:
         pin: "Pin Topic"
         unpin: "Un-Pin Topic"
         pin_globally: "Pin Topic Globally"
-        make_banner: "Banner Topic"
+        make_banner: "Make Banner Topic"
         remove_banner: "Remove Banner Topic"
 
       reply:
         title: "Reply"
         help: "begin composing a reply to this topic"
-
-      clear_pin:
-        title: "Clear pin"
-        help: "Clear the pinned status of this topic so it no longer appears at the top of your topic list"
 
       share:
         title: "Share"
@@ -3129,6 +3118,7 @@ en:
         name: "Name"
         name_placeholder: "What is this bookmark for?"
         set_reminder: "Remind me"
+        options: "Options"
         actions:
           delete_bookmark:
             name: "Delete bookmark"
@@ -3794,6 +3784,9 @@ en:
         leader: "leader"
       detailed_name: "%{level}: %{name}"
 
+    pick_files_button:
+      unsupported_file_picked: "You have picked an unsupported file. Supported file types – %{types}."
+
   # This section is exported to the javascript for i18n in the admin section
   admin_js:
     type_to_filter: "type to filter..."
@@ -3906,10 +3899,6 @@ en:
               label: Category
             include_subcategories:
               label: "Include Subcategories"
-
-      commits:
-        latest_changes: "Latest changes: please update often!"
-        by: "by"
 
       groups:
         new:
@@ -4037,6 +4026,7 @@ en:
               log_out: Log out all sessions for a user.
               anonymize: Anonymize user accounts.
               delete: Delete user accounts.
+              list: Get a list of users.
             email:
               receive_emails: Combine this scope with the mail-receiver to process incoming emails.
 
@@ -4605,7 +4595,6 @@ en:
           details: "Details"
           previous_value: "Previous"
           new_value: "New"
-          diff: "Diff"
           show: "Show"
           modal_title: "Details"
           no_previous: "There is no previous value."
@@ -4700,6 +4689,8 @@ en:
             post_staff_note_create: "add staff note"
             post_staff_note_destroy: "destroy staff note"
             delete_group: "delete group"
+            watched_word_create: "add watched word"
+            watched_word_destroy: "delete watched word"
         screened_emails:
           title: "Screened Emails"
           description: "When someone tries to create a new account, the following email addresses will be checked and the registration will be blocked, or some other action performed."
@@ -4755,6 +4746,7 @@ en:
         clear_all: Clear All
         clear_all_confirm: "Are you sure you want to clear all watched words for the %{action} action?"
         invalid_regex: 'The watched word "%{word}" is an invalid regular expression.'
+        regex_warning: '<a href="%{basePath}/admin/site_settings/category/all_results?filter=watched%20words%20regular%20expressions%20">Watched words are regular expressions</a> and they do not automatically include word boundaries. If you want the regular expression to match whole words, include <code>\b</code> at the start and end of your regular expression.'
         actions:
           block: "Block"
           censor: "Censor"
@@ -4877,6 +4869,7 @@ en:
         penalty_post_edit: "Edit the post"
         penalty_post_none: "Do nothing"
         penalty_count: "Penalty Count"
+        penalty_history: "Penalty History"
         clear_penalty_history:
           title: "Clear Penalty History"
           description: "users with penalties cannot reach TL3"
@@ -5016,6 +5009,9 @@ en:
         trust_level_unlocked_tip: "trust level is unlocked, system will may promote or demote user"
         lock_trust_level: "Lock Trust Level"
         unlock_trust_level: "Unlock Trust Level"
+        silenced_count: "Silenced"
+        suspended_count: "Suspended"
+        last_six_months: "Last 6 months"
         tl3_requirements:
           title: "Requirements for Trust Level 3"
           table_title:
@@ -5095,6 +5091,7 @@ en:
           text: "Text Field"
           confirm: "Confirmation"
           dropdown: "Dropdown"
+          multiselect: "Multiselect"
 
       site_text:
         description: "You can customize any of the text on your forum. Please start by searching below:"
@@ -5261,8 +5258,11 @@ en:
           perform: "Award Badge to Users"
           upload_csv: Upload a CSV with either user emails or usernames
           aborted: Please upload a CSV containing either user emails or usernames
-          success: Your CSV was received and users will receive their badge shortly.
+          success: Your CSV was received and %{count} users will receive their badge shortly.
+          csv_has_unmatched_users: "The following entries are in the CSV file but they couldn't be matched to existing users, and therefore won't receive the badge:"
+          csv_has_unmatched_users_truncated_list: "There were %{count} entries in the CSV file that couldn't be matched to existing users, and therefore won't receive the badge. Due to the large number of unmatched entries, only the first 100 are shown:"
           replace_owners: Remove the badge from previous owners
+          grant_existing_holders: Grant additional badges to existing badge holders
 
       emoji:
         title: "Emoji"

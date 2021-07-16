@@ -190,7 +190,7 @@ module PostGuardian
     # Can't delete the first post
     return false if post.is_first_post?
 
-    return true if can_moderate_topic?(post.topic)
+    return true if is_staff? || is_category_group_moderator?(post.topic&.category)
 
     # Can't delete posts in archived topics unless you are staff
     return false if post.topic&.archived?
@@ -251,7 +251,9 @@ module PostGuardian
   end
 
   def can_change_post_owner?
-    is_admin?
+    return true if is_admin?
+
+    SiteSetting.moderators_change_post_ownership && is_staff?
   end
 
   def can_change_post_timestamps?

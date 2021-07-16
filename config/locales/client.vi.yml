@@ -174,7 +174,6 @@ vi:
     submit: "Gửi đi"
     generic_error: "Rất tiếc, đã có lỗi xảy ra."
     generic_error_with_reason: "Đã xảy ra lỗi: %{error}"
-    go_ahead: "Lên đầu"
     sign_up: "Đăng ký"
     log_in: "Đăng nhập"
     age: "Tuổi"
@@ -201,7 +200,6 @@ vi:
     more: "Nhiều hơn"
     x_more:
       other: "%{count} Thêm"
-    less: "Ít hơn"
     never: "không bao giờ"
     every_30_minutes: "mỗi 30 phút"
     every_hour: "mỗi giờ"
@@ -210,7 +208,6 @@ vi:
     every_month: "hàng tháng"
     every_six_months: "mỗi sáu tháng"
     max_of_count: "tối đa trong %{count}"
-    alternation: "hoặc"
     character_count:
       other: "%{count} ký tự"
     related_messages:
@@ -241,7 +238,6 @@ vi:
       help:
         bookmark: "Chọn bài viết đầu tiên của chủ đề cho vào dấu trang"
         unbookmark: "Chọn để xoá toàn bộ dấu trang trong chủ đề này"
-        unbookmark_with_reminder: "Nhấp để xóa tất cả dấu trang và lời nhắc trong chủ đề này. Bạn có lời nhắc đặt %{reminder_at} cho chủ đề này."
     bookmarks:
       created: "Bạn đã đánh dấu bài đăng này. %{name}"
       not_bookmarked: "đánh dấu bài viết này"
@@ -537,13 +533,8 @@ vi:
       member_added: "Đã thêm"
       member_requested: "Yêu cầu tại"
       add_members:
-        title: "Thêm thành viên vào %{group_name}"
-        description: "Bạn cũng có thể dán vào danh sách được phân tách bằng dấu phẩy."
-        usernames_or_emails:
-          title: "Nhập tên người dùng hoặc địa chỉ email"
-          input_placeholder: "Tên người dùng hoặc email"
-        usernames:
-          input_placeholder: "Tên người dùng"
+        usernames_placeholder: "tên người dùng"
+        usernames_or_emails_placeholder: "tên người dùng hoặc email"
         notify_users: "Thông báo cho người dùng"
       requests:
         title: "Những yêu cầu"
@@ -558,7 +549,7 @@ vi:
         title: "Quản lý"
         name: "Tên"
         full_name: "Tên đầy đủ"
-        add_members: "Thêm thành viên"
+        invite_members: "Mời"
         delete_member_confirm: "Xóa %{username}ra khỏi nhóm %{group}?"
         profile:
           title: Hồ sơ
@@ -586,6 +577,7 @@ vi:
           mailboxes:
             synchronized: "Hộp thư được đồng bộ hóa"
             none_found: "Không tìm thấy hộp thư nào trong tài khoản email này."
+            disabled: "Khóa"
         membership:
           title: Thành viên
           access: Truy cập
@@ -966,11 +958,9 @@ vi:
         sent: "Đã gửi"
         archive: "Lưu Trữ"
         groups: "Nhóm của tôi"
-        bulk_select: "Chọn tin nhắn"
         move_to_inbox: "Chuyển sang hộp thư"
         move_to_archive: "Lưu trữ"
         failed_to_move: "Lỗi khi chuyển các tin nhắn đã chọn (có thể do lỗi mạng)"
-        select_all: "Chọn tất cả"
         tags: "Thẻ"
       preferences_nav:
         account: "Tài khoản"
@@ -1349,6 +1339,8 @@ vi:
       title:
         title: "Tiêu đề"
         none: "(không có gì)"
+      flair:
+        none: "(không có gì)"
       primary_group:
         title: "Nhóm Chính"
         none: "(không có gì)"
@@ -1418,7 +1410,7 @@ vi:
       sign_up: "Đăng ký"
       hide_session: "Nhắc vào ngày mai"
       hide_forever: "không, cảm ơn"
-      intro: "Xin chào! Có vẻ như bạn đang thích cuộc thảo luận, nhưng bạn chưa đăng ký tài khoản."
+      intro: "Xin chào! Có vẻ như bạn đang quan tâm chủ đề này, nhưng bạn chưa đăng ký tài khoản."
       value_prop: "Khi bạn tạo tài khoản, chúng tôi nhớ chính xác những gì bạn đã đọc, vì vậy bạn luôn quay lại ngay nơi bạn đã dừng lại. Bạn cũng nhận được thông báo, tại đây và qua email, bất cứ khi nào ai đó trả lời bạn. Và bạn có thể thích bài viết để chia sẻ. :heartpulse:"
     summary:
       enabled_description: "Bạn đang xem một bản tóm tắt của chủ đề này: các bài viết thú vị nhất được xác định bởi cộng đồng."
@@ -1609,7 +1601,7 @@ vi:
       food_&_drink: Đồ ăn thức uống
       travel_&_places: Du lịch và Địa điểm
       activities: Hoạt động
-      objects: Vật th
+      objects: Vật thể
       symbols: Ký hiệu
       flags: Dấu cờ - Flags
       recent: Được sử dụng gần đây
@@ -1842,13 +1834,6 @@ vi:
         reaction: "phản ứng mới"
         votes_released: "Phiếu bầu đã được phát hành"
     upload_selector:
-      title: "Thêm một ảnh"
-      title_with_attachments: "Thêm một ảnh hoặc tệp tin"
-      from_my_computer: "Từ thiết bị của tôi"
-      from_the_web: "Từ Web"
-      remote_tip: "đường dẫn tới hình ảnh"
-      local_tip: "chọn hình từ thiết bị của bạn"
-      hint_for_supported_browsers: "bạn có thể kéo và thả ảnh vào trình soan thảo này"
       uploading: "Đang tải lên"
       select_file: "Chọn Tài liệu"
       default_image_alt_text: hình ảnh
@@ -2039,12 +2024,6 @@ vi:
       not_found:
         title: "Không tìm thấy chủ đề"
         description: "Xin lỗi, chúng tôi không thể tìm thấy chủ đề đó. Có lẽ nó đã bị loại bởi mod?"
-      total_unread_posts:
-        other: "Bạn có %{number} bài đăng chưa đọc trong chủ đề này"
-      unread_posts:
-        other: "bạn có %{number} bài đăng củ chưa đọc trong chủ đề này"
-      new_posts:
-        other: "có %{count} bài đăng mới trong chủ đề này từ lần đọc cuối"
       likes:
         other: "có %{count} thích trong chủ để này"
       back_to_list: "Quay lại danh sách chủ đề"
@@ -2106,8 +2085,6 @@ vi:
         title: "Lên lịch xuất bản"
       temp_open:
         title: "Mở tạm thời"
-      auto_reopen:
-        title: "Chủ đề tự động mở"
       temp_close:
         title: "Tạm đóng"
       auto_close:
@@ -2219,14 +2196,10 @@ vi:
         pin: "Ghim Chủ Đề"
         unpin: "Bỏ-Ghim Chủ Đề"
         pin_globally: "Ghim Chủ Đề Tổng Thể"
-        make_banner: "Banner chủ đề"
         remove_banner: "Bỏ banner chủ đề"
       reply:
         title: "Trả lời"
         help: "bắt đầu soạn phản hồi cho chủ đề này"
-      clear_pin:
-        title: "Xóa ghim"
-        help: "Xóa trạng thái ghim của chủ đề này để nó không còn xuất hiện trên cùng danh sách chủ đề của bạn"
       share:
         title: "Chia sẻ"
         extended_title: "Chia sẻ một liên kết"
@@ -3077,8 +3050,11 @@ vi:
       groups:
         title: "Nhóm thẻ"
         new: "Nhóm mới"
+        tags_label: "Thẻ trong nhóm này"
+        parent_tag_label: "Thẻ cha"
         one_per_topic_label: "Giới hạn một thẻ cho mỗi chủ đề từ nhóm này"
         new_name: "Nhóm thẻ mới"
+        name_placeholder: "Tên"
         save: "Lưu"
         delete: "Xoá"
         confirm_delete: "Bạn có chắc chắn muốn xóa nhóm thẻ này không?"
@@ -3228,9 +3204,6 @@ vi:
               label: Danh mục
             include_subcategories:
               label: "Bao gồm các danh mục phụ"
-      commits:
-        latest_changes: "Thay đổi cuối: vui lòng cập nhật thường xuyên!"
-        by: "bởi"
       groups:
         new:
           title: "Nhóm mới"
@@ -3242,8 +3215,6 @@ vi:
             available: "Tên nhóm dùng được"
             not_available: "Tên nhóm đã sử dụng"
             blank: "Tên nhóm không thể trống"
-        add_members:
-          as_owner: "Đặt user làm chủ sở hữu của nhóm này"
         manage:
           interaction:
             email: Email
@@ -3859,7 +3830,6 @@ vi:
           details: "Chi tiết"
           previous_value: "Trước"
           new_value: "Mới"
-          diff: "So sánh"
           show: "Hiển thị"
           modal_title: "Chi tiết"
           no_previous: "Không có giá trị trước đó."
@@ -4203,6 +4173,8 @@ vi:
         trust_level_unlocked_tip: "độ tin cậy đang được mở, hệ thống có thể thăng hoặc giáng chức người dùng"
         lock_trust_level: "Khóa Cấp độ Tin tưởng"
         unlock_trust_level: "Mở khóa độ tin cậy"
+        silenced_count: "Im lặng"
+        suspended_count: "Đã tạm khóa"
         tl3_requirements:
           title: "Yêu cầu Cấp độ tin tưởng 3"
           table_title:

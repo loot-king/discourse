@@ -104,6 +104,7 @@ export default Controller.extend({
   prioritizedCategoryId: null,
   lastValidatedAt: null,
   isUploading: false,
+  isProcessingUpload: false,
   topic: null,
   linkLookup: null,
   showPreview: true,
@@ -662,7 +663,7 @@ export default Controller.extend({
     },
   },
 
-  disableSubmit: or("model.loading", "isUploading"),
+  disableSubmit: or("model.loading", "isUploading", "isProcessingUpload"),
 
   save(force, options = {}) {
     if (this.disableSubmit) {

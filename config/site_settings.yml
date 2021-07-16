@@ -267,6 +267,10 @@ basic:
     client: true
     default: true
     hidden: true
+  enable_experimental_image_uploader:
+    client: true
+    default: false
+    hidden: true
   default_theme_id:
     default: -1
     hidden: true
@@ -349,6 +353,9 @@ basic:
     default: "arial"
     enum: "BaseFontSetting"
     refresh: true
+  order_stylesheets:
+    default: false
+    hidden: true
 
 login:
   invite_only:
@@ -1406,10 +1413,10 @@ files:
     default: 100000
     hidden: true
   composer_media_optimization_image_enabled:
-    default: false
+    default: true
     client: true
-  composer_media_optimization_image_kilobytes_optimization_threshold:
-    default: 1048576
+  composer_media_optimization_image_bytes_optimization_threshold:
+    default: 524288
     client: true
   composer_media_optimization_image_resize_dimensions_threshold:
     default: 1920
@@ -1562,6 +1569,9 @@ security:
   enable_escaped_fragments: true
   allow_index_in_robots_txt: true
   moderators_manage_categories_and_groups: false
+  moderators_change_post_ownership:
+    client: true
+    default: false
   moderators_view_emails:
     client: true
     default: false
@@ -1630,7 +1640,7 @@ security:
   content_security_policy_collect_reports:
     default: false
   content_security_policy_frame_ancestors:
-    default: false
+    default: true
   content_security_policy_script_src:
     type: simple_list
     default: ""
@@ -1731,6 +1741,7 @@ spam:
   cooldown_hours_until_reflag:
     default: 24
     min: 0
+  slow_mode_prevents_editing: true
 
   reviewable_claiming:
     client: true
@@ -2269,6 +2280,11 @@ uncategorized:
     default: 60
     min: 0
 
+  penalty_step_hours:
+    default: "24|72|168|720"
+    type: "list"
+    list_type: "compact"
+
   svg_icon_subset:
     default: ""
     type: "list"
@@ -2292,6 +2308,8 @@ uncategorized:
 
   create_revision_on_bulk_topic_moves:
     default: true
+
+  allow_changing_staged_user_tracking: false
 
 user_preferences:
   default_email_digest_frequency:

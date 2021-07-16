@@ -38,60 +38,67 @@ class Stylesheet::Manager
   def self.color_scheme_cache_key(color_scheme, theme_id = nil)
     color_scheme_name = Slug.for(color_scheme.name) + color_scheme&.id.to_s
     theme_string = theme_id ? "_theme#{theme_id}" : ""
-    "#{COLOR_SCHEME_STYLESHEET}_#{color_scheme_name}#{theme_string}_#{Discourse.current_hostname}"
+    "#{COLOR_SCHEME_STYLESHEET}_#{color_scheme_name}_#{theme_string}_#{Discourse.current_hostname}"
   end
 
   def self.precompile_css
-    themes = Theme.where('user_selectable OR id = ?', SiteSetting.default_theme_id).pluck(:id, :name, :color_scheme_id)
-    themes << nil
+    targets = [:desktop, :mobile, :desktop_rtl, :mobile_rtl, :admin, :wizard]
+    targets += Discourse.find_plugin_css_assets(include_disabled: true, mobile_view: true, desktop_view: true)
+
+    targets.each do |target|
+      $stderr.puts "precompile target: #{target}"
+
+      Stylesheet::Manager::Builder.new(target: target, manager: nil).compile(force: true)
+    end
+  end
+
+  def self.precompile_theme_css
+    themes = Theme.where('user_selectable OR id = ?', SiteSetting.default_theme_id).pluck(:id, :color_scheme_id)
 
     color_schemes = ColorScheme.where(user_selectable: true).to_a
     color_schemes << ColorScheme.find_by(id: SiteSetting.default_dark_mode_color_scheme_id)
+    color_schemes << ColorScheme.base
     color_schemes = color_schemes.compact.uniq
 
-    targets = [:desktop, :mobile, :desktop_rtl, :mobile_rtl, :desktop_theme, :mobile_theme, :admin, :wizard]
-    targets += Discourse.find_plugin_css_assets(include_disabled: true, mobile_view: true, desktop_view: true)
+    targets = [:desktop_theme, :mobile_theme]
+    compiled = Set.new
 
-    themes.each do |id, name, color_scheme_id|
-      theme_id = id || SiteSetting.default_theme_id
+    themes.each do |theme_id, color_scheme_id|
       manager = self.new(theme_id: theme_id)
 
       targets.each do |target|
-        if target =~ THEME_REGEX
-          next if theme_id == -1
+        next if theme_id == -1
 
-          scss_checker = ScssChecker.new(target, manager.theme_ids)
+        scss_checker = ScssChecker.new(target, manager.theme_ids)
 
-          manager.load_themes(manager.theme_ids).each do |theme|
-            builder = Stylesheet::Manager::Builder.new(
-              target: target, theme: theme, manager: manager
-            )
+        manager.load_themes(manager.theme_ids).each do |theme|
+          next if compiled.include?("#{target}_#{theme.id}")
 
-            STDERR.puts "precompile target: #{target} #{builder.theme.name}"
-            next if theme.component && !scss_checker.has_scss(theme.id)
-            builder.compile(force: true)
-          end
-        else
-          STDERR.puts "precompile target: #{target} #{name}"
+          builder = Stylesheet::Manager::Builder.new(
+            target: target, theme: theme, manager: manager
+          )
 
-          Stylesheet::Manager::Builder.new(
-            target: target, theme: manager.get_theme(theme_id), manager: manager
-          ).compile(force: true)
+          next if theme.component && !scss_checker.has_scss(theme.id)
+          $stderr.puts "precompile target: #{target} #{theme.name}"
+          builder.compile(force: true)
+          compiled << "#{target}_#{theme.id}"
         end
       end
 
-      theme_color_scheme = ColorScheme.find_by_id(color_scheme_id) || ColorScheme.base
+      theme_color_scheme = ColorScheme.find_by_id(color_scheme_id)
+      theme = manager.get_theme(theme_id)
 
-      [theme_color_scheme, *color_schemes].uniq.each do |scheme|
-        STDERR.puts "precompile target: #{COLOR_SCHEME_STYLESHEET} #{name} (#{scheme.name})"
+      [theme_color_scheme, *color_schemes].compact.uniq.each do |scheme|
+        $stderr.puts "precompile target: #{COLOR_SCHEME_STYLESHEET} #{theme.name} (#{scheme.name})"
 
         Stylesheet::Manager::Builder.new(
           target: COLOR_SCHEME_STYLESHEET,
-          theme: manager.get_theme(theme_id),
+          theme: theme,
           color_scheme: scheme,
           manager: manager
         ).compile(force: true)
       end
+
       clear_color_scheme_cache!
     end
 
@@ -181,63 +188,62 @@ class Stylesheet::Manager
 
   def stylesheet_link_tag(target = :desktop, media = 'all')
     stylesheets = stylesheet_details(target, media)
-
     stylesheets.map do |stylesheet|
       href = stylesheet[:new_href]
       theme_id = stylesheet[:theme_id]
       data_theme_id = theme_id ? "data-theme-id=\"#{theme_id}\"" : ""
-      %[<link href="#{href}" media="#{media}" rel="stylesheet" data-target="#{target}" #{data_theme_id}/>]
+      theme_name = stylesheet[:theme_name]
+      data_theme_name = theme_name ? "data-theme-name=\"#{theme_name}\"" : ""
+      %[<link href="#{href}" media="#{media}" rel="stylesheet" data-target="#{target}" #{data_theme_id} #{data_theme_name}/>]
     end.join("\n").html_safe
   end
 
   def stylesheet_details(target = :desktop, media = 'all')
     target = target.to_sym
     current_hostname = Discourse.current_hostname
+    is_theme_target = !!(target.to_s =~ THEME_REGEX)
 
-    array_cache_key = "array_themes_#{@theme_ids.join(",")}_#{target}_#{current_hostname}"
+    array_cache_key = is_theme_target ?
+      "array_themes_#{@theme_ids.join(",")}_#{target}_#{current_hostname}" :
+      "array_#{target}_#{current_hostname}"
+
     stylesheets = cache[array_cache_key]
     return stylesheets if stylesheets.present?
 
     @@lock.synchronize do
       stylesheets = []
-      stale_theme_ids = []
-      theme_ids = target.to_s =~ THEME_REGEX ? @theme_ids : [@theme_id]
 
-      theme_ids.each do |theme_id|
-        cache_key = "path_#{target}_#{theme_id}_#{current_hostname}"
+      if is_theme_target
+        scss_checker = ScssChecker.new(target, @theme_ids)
+        themes = load_themes(@theme_ids)
+        themes.each do |theme|
+          theme_id = theme&.id
+          data = { target: target, theme_id: theme_id, theme_name: theme&.name.downcase, remote: theme.remote_theme_id? }
+          builder = Builder.new(target: target, theme: theme, manager: self)
 
-        if href = cache[cache_key]
-          stylesheets << {
-            target: target,
-            theme_id: theme_id,
-            new_href: href
-          }
-        else
-          stale_theme_ids << theme_id
-        end
-      end
-
-      scss_checker = ScssChecker.new(target, stale_theme_ids)
-
-      themes = @theme_id.blank? ? [nil] : load_themes(stale_theme_ids)
-
-      themes.each do |theme|
-        theme_id = theme&.id
-        data = { target: target, theme_id: theme_id }
-        builder = Builder.new(target: target, theme: theme, manager: self)
-        is_theme = builder.is_theme?
-        has_theme = builder.theme.present?
-
-        if is_theme && !has_theme
-          next
-        else
-          next if is_theme && builder.theme&.component && !scss_checker.has_scss(theme_id)
+          next if builder.theme&.component && !scss_checker.has_scss(theme_id)
           builder.compile unless File.exists?(builder.stylesheet_fullpath)
           href = builder.stylesheet_path(current_hostname)
-          cache.defer_set("path_#{target}_#{theme_id}_#{current_hostname}", href)
+
+          data[:new_href] = href
+          stylesheets << data
         end
 
-        data[:new_href] = href
+        if SiteSetting.order_stylesheets && stylesheets.size > 1
+          stylesheets = stylesheets.sort_by do |s|
+            [
+              s[:remote] ? 0 : 1,
+              s[:theme_id] == @theme_id ? 1 : 0,
+              s[:theme_name]
+            ]
+          end
+        end
+      else
+        builder = Builder.new(target: target, manager: self)
+        builder.compile unless File.exists?(builder.stylesheet_fullpath)
+        href = builder.stylesheet_path(current_hostname)
+
+        data = { target: target, new_href: href }
         stylesheets << data
       end
 
